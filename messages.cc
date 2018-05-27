@@ -31,9 +31,9 @@ RoutingMessage::RoutingMessage(const RoutingMessage &rhs)
 
 ostream &RoutingMessage::Print(ostream &os) const
 {
-  os << "Message from node " << this.sender <, ":\n";
-  for (int i = 0; i < this.dist_vec.size(); i++)
-    os << this.dist_vec[i] << " ";
+  os << "Message from node " << this->sender <, ":\n";
+  for (int i = 0; i < this->dist_vec.size(); i++)
+    os << this->dist_vec[i] << " ";
   os << "\n";
   return os;
 }
@@ -43,8 +43,8 @@ RoutingMessage::RoutingMessage()
 
 RoutingMessage(unsigned sender, std::vector<double> vec)
 {
-  this.dist_vec = vec;
-  this.sender = sender;
+  this->dist_vec = vec;
+  this->sender = sender;
 }
 
 RoutingMessage::RoutingMessage(const RoutingMessage &rhs) :

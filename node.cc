@@ -187,12 +187,12 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
   unsigned src = m->sender;
   std::vector<double> new_vec = m->dist_vec;
 
-  if (src != this.GetNumber()) return; // invalid message
+  if (src != this->GetNumber()) return; // invalid message
 
-  bool updated = this.tbl.UpdateMatrix(src, new_vec);
+  bool updated = this->tbl.UpdateMatrix(src, new_vec);
   if (updated)
   {
-    std::vector<double> new_vec = this.tbl.GetVector(-1);
+    std::vector<double> new_vec = this->tbl.GetVector(-1);
     const RoutingMessage* routing_message = new RoutingMessage(src, new_vec);
     // send messages to all neighbors
     SendToNeighbors(routing_message);
@@ -209,8 +209,8 @@ void Node::TimeOut()
 Node *Node::GetNextHop(const Node *destination) const
 {
   // returns a Node*
-  unsigned num = this.GetNumber();
-  unsigned nexthop = this.tbl.GetNextHop();
+  unsigned num = this->GetNumber();
+  unsigned nexthop = this->tbl.GetNextHop();
   if (nexthop == num) return NULL; // infinite loop
   deque<Node*> neighbors = this->GetNeighbors();
 
