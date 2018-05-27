@@ -21,7 +21,6 @@ ostream & Table::Print(ostream &os) const
 
   Table(unsigned ind, unsigned sz)
   {
-    assert(ind <= sz);
     double inf = std::numeric_limits<double>::infinity();
     this.index = ind;
     this.size = sz;
