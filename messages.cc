@@ -41,7 +41,7 @@ ostream &RoutingMessage::Print(ostream &os) const
 RoutingMessage::RoutingMessage()
 {}
 
-RoutingMessage(unsigned sender, vector<double> vec)
+RoutingMessage(unsigned sender, std::vector<double> vec)
 {
   this.dist_vec = vec;
   this.sender = sender;

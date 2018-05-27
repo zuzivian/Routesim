@@ -35,9 +35,9 @@ class Table {
  private:
   unsigned size;
   unsigned index;
-  vector<unsigned> next_hop;
-  vector<double> link_cost;
-  vector<vector<double>> matrix;
+  std::vector<unsigned> next_hop;
+  std::vector<double> link_cost;
+  std::vector<std::vector<double>> matrix;
 
  public:
   Table();
@@ -49,7 +49,7 @@ class Table {
   bool UpdateMatrix(unsigned index, vector<double> vec);
   bool UpdateLink(unsigned n, double d);
   unsigned GetNextHop(unsigned n);
-  vector<double> GetVector(int index);
+  std::vector<double> GetVector(int index);
 
 };
 #endif

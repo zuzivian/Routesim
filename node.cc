@@ -174,7 +174,7 @@ void Node::LinkHasBeenUpdated(const Link *l)
   bool updated = this.tbl.UpdateLink(dest, newlat);
   if (updated)
   {
-    vector<double> new_vec = this.tbl.GetVector(-1);
+    std::vector<double> new_vec = this.tbl.GetVector(-1);
     const RoutingMessage* routing_message = new RoutingMessage(src, new_vec);
     // send messages to all neighbors
     SendToNeighbors(routing_message);
@@ -185,14 +185,14 @@ void Node::LinkHasBeenUpdated(const Link *l)
 void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 {
   unsigned src = m->sender;
-  vector<double> new_vec = m->dist_vec;
+  std::vector<double> new_vec = m->dist_vec;
 
   if (src != this.GetNumber()) return; // invalid message
 
   bool updated = this.tbl.UpdateMatrix(src, new_vec);
   if (updated)
   {
-    vector<double> new_vec = this.tbl.GetVector(-1);
+    std::vector<double> new_vec = this.tbl.GetVector(-1);
     const RoutingMessage* routing_message = new RoutingMessage(src, new_vec);
     // send messages to all neighbors
     SendToNeighbors(routing_message);
