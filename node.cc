@@ -5,7 +5,9 @@
 Node::Node(const unsigned n, SimulationContext *c, double b, double l) :
     number(n), context(c), bw(b), lat(l)
 {
+  #if defined(DISTANCEVECTOR)
   this->tbl = Table(n, 25);
+  #endif
 }
 
 Node::Node()
@@ -211,7 +213,7 @@ Node *Node::GetNextHop(const Node *destination) const
 {
   // returns a Node*
   unsigned num = this->GetNumber();
-  unsigned nexthop = this->tbl->GetNextHop(destination->GetNumber());
+  unsigned nexthop = this->tbl.GetNextHop(destination->GetNumber());
   if (nexthop == num) return NULL; // infinite loop
   deque<Node*> neighbors = this->GetNeighbors();
 
