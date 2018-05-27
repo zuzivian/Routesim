@@ -215,9 +215,9 @@ Node *Node::GetNextHop(const Node *destination)
   unsigned num = this->GetNumber();
   unsigned nexthop = this->tbl.GetNextHop(destination->GetNumber());
   if (nexthop == num) return NULL; // infinite loop
-  deque<Node*> neighbors = this->GetNeighbors();
+  deque<Node*> neighbors = *this->GetNeighbors();
 
-  for (int i = 0; i < neighbors.size() ; i++)
+  for (unsigned i = 0; i < neighbors.size() ; i++)
   {
       if (nexthop == neighbors[i]->GetNumber())
         return new Node(neighbors[i]);
