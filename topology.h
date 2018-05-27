@@ -15,7 +15,7 @@ class Topology
 
   deque<Node*>::iterator FindMatchingNodeIt(const Node *n);
   deque<Link*>::iterator FindMatchingLinkIt(const Link *l);
-  
+
  public:
   Topology();
   virtual ~Topology();
@@ -48,4 +48,3 @@ inline ostream & operator<<(ostream &os, const Topology &t) { return t.Print(os)
 
 
 #endif
-

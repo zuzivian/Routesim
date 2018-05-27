@@ -43,11 +43,22 @@ Node::~Node()
 // so that the corresponding node can recieve the ROUTING_MESSAGE_ARRIVAL event at the proper time
 void Node::SendToNeighbors(const RoutingMessage *m)
 {
+  deque<Node*> neighbors = this->GetNeighbors();
+  for (int i=0; i< neighbors.size(); i++)
+  {
+    SendToNeighbor(neighbors[i], m);
+  }
 }
 
 void Node::SendToNeighbor(const Node *n, const RoutingMessage *m)
 {
+  Link x = Link(src->GetNumber(),dest->GetNumber(),0,0,0);
+  Link *l = context->FindMatchingLink(&x);
 
+  context->PostEvent(new Event(context->GetTime()+l->GetLatency(),
+		      ROUTING_MESSAGE_ARRIVAL,
+		      context->FindMatchingNode(n),
+		      (void*)m));
 }
 
 deque<Node*> *Node::GetNeighbors()
@@ -150,14 +161,42 @@ ostream & Node::Print(ostream &os) const
 
 void Node::LinkHasBeenUpdated(const Link *l)
 {
+  // this is an outgoing vector
   // update our table
   // send out routing mesages
   cerr << *this<<": Link Update: "<<*l<<endl;
+  double newlat = l->GetLatency();
+  unsigned dest = l->GetDest();
+  unsigned src = l->GetSrc();
+
+  if (src != this.GetNumber()) return; // invalid link
+
+  bool updated = this.tbl.UpdateLink(dest, newlat);
+  if (updated)
+  {
+    vector<double> new_vec = this.tbl.GetVector(-1);
+    const RoutingMessage* routing_message = new RoutingMessage(src, new_vec);
+    // send messages to all neighbors
+    SendToNeighbors(routing_message);
+  }
 }
 
 
 void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 {
+  unsigned src = m->sender;
+  vector<double> new_vec = m->dist_vec;
+
+  if (src != this.GetNumber()) return; // invalid message
+
+  bool updated = this.tbl.UpdateMatrix(src, new_vec);
+  if (updated)
+  {
+    vector<double> new_vec = this.tbl.GetVector(-1);
+    const RoutingMessage* routing_message = new RoutingMessage(src, new_vec);
+    // send messages to all neighbors
+    SendToNeighbors(routing_message);
+  }
 
 }
 

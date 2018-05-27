@@ -29,7 +29,6 @@ class RoutingMessage {
 
   vector<double> dist_vec;
   unsigned sender;
-
   RoutingMessage();
   RoutingMessage(vector<double> v);
   RoutingMessage(const RoutingMessage &rhs);
