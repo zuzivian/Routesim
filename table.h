@@ -29,16 +29,28 @@ class Table {
 #include <deque>
 
 class Table {
+  // Table: Holds the DV algorithm and data structures
+  // We implement DV algorithm here
+  // Must be able to calculate next_hop as well
+ private:
+  unsigned size;
+  unsigned index;
+  vector<unsigned> next_hop;
+  vector<double> link_cost;
   vector<vector<double>> matrix;
-  int sz;
 
  public:
   Table();
+  Table(unsigned num, unsigned sz);
+  Table(const Table &rhs);
   ostream & Print(ostream &os) const;
-  void AddRow();
-  void RemoveRow(int index);
-  void UpdateRow(int index, vector<double> row);
-  vector<double> GetRow(int index);
+
+  bool ComputeMatrix();
+  bool UpdateMatrix(unsigned index, vector<double> vec);
+  bool UpdateLink(unsigned n, double d);
+  unsigned GetNextHop(unsigned n);
+  vector<double> GetVector(int index);
+
 };
 #endif
 

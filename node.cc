@@ -169,6 +169,8 @@ void Node::TimeOut()
 
 Node *Node::GetNextHop(const Node *destination) const
 {
+
+  // returns a Node*
 }
 
 Table *Node::GetRoutingTable() const

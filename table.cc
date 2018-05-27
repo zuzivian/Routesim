@@ -17,71 +17,79 @@ ostream & Table::Print(ostream &os) const
 
 #if defined(DISTANCEVECTOR)
 
-Table::Table()
-{}
+  Table::Table() {}
 
-Table::Table(int sz)
-{
-  vector<vector<double> > matrix(sz);
-  for ( int i = 0 ; i < sz ; i++ )
-     matrix[i].resize(sz);
-   this.matrix = matrix;
-   // this.prev = matrix;
-   this.sz = sz;
-}
+  Table(unsigned ind, unsigned sz)
+  {
+    assert(ind <= sz);
+    double inf = std::numeric_limits<double>::infinity();
+    this.index = ind;
+    this.size = sz;
+    // initialize all next_hops as unreachable
+    this.next_hop = vector<unsigned> (sz, ind);
+    this.link_cost = vector<double> (sz, inf);
+    this.matrix = vector<vector<double>>(sz, vector<double>(sz, inf));
+    for (int i = 0; i < sz; i++)
+      matrix[i][i] = 0.0;
+  }
 
-ostream & Table::Print(ostream &os) const
-{
-  char[] string = "";
+  Table(const Table &rhs) :
+    index(rhs.index), size(rhs.size), next_hop(rhs.next_hop),
+    link_cost(rhs.link_cost), matrix(rhs.matrix)
+    {}
 
-  for (int i = 0; i < this.sz ; i++) {
-    for (int j = 0; j < this.sz ; j++) {
-      string = strcat(string, this.matrix[i][j]);
-      string = strcat(string, " ");
+  ostream & Table::Print(ostream &os) const
+  {
+    os << "matrix\n";
+    for (int i = 0; i < this.sz ; i++) {
+      for (int j = 0; j < this.sz ; j++) {
+        os << this.matrix[i][j] << " ";
+      }
+      os << "\n";
     }
-    string = strcat(string, "\n");
+    os << "\nlink cost\n");
+    for (int i = 0; i < this.sz ; i++) {
+      os << this.link_cost[i] << " ";
+    }
+    os << "\nnext hops\n";
+    for (int i = 0; i < this.sz ; i++) {
+      os << this.next_hop[i] << " ";
+    }
+    os << "\n";
+    return os;
   }
-  string = strcat(string, "\n\n");
 
-
-  os << string;
-  return os;
-}
-
-void Table::AddRow();
-{
-  vector<double> newrow(sz);
-  // add the rows
-  this.matrix.pushback(newrow);
-  for ( int i = 0 ; i < sz+1 ; i++ )
+  bool Table::ComputeMatrix()
   {
-    // we add the columns now
-    this.matrix[i].pushback(0.0);
+    //TODO: Implement DV
+    return false;
   }
-  this.sz++;
-  return;
-}
 
-void Table::RemoveRow(int index);
-{
-  this.matrix.erase(this.matrix.begin()+index);
-  for ( int i = 0 ; i < sz - 1 ; i++ )
+  // Takes a distance vector from neighbor and add to matrix, then update matrix.
+  bool Table::UpdateMatrix(unsigned index, vector<double> vec) {
+    if (index != this.index) return false;
+    if (vec.size != this.size) return false;
+    this.matrix[index] = vec;
+    return ComputeMatrix();
+  }
+
+  // Takes a link cost from neighbor and add to cost vector, then update matrix.
+  bool Table::UpdateLink(unsigned index, double newcost)
   {
-    this.matrix[i].erase(this.matrix[i].begin()+index);
+    if (index != this.index) return false;
+    this.link_cost[index] = newcost;
+    return ComputeMatrix();
   }
-  return;
-}
 
-void Table::UpdateRow(int index, vector<double> row);
-{
-  this.matrix[index] = row;
-  // this.prev[index] = prev;
-}
+  unsigned Table::GetNextHop(unsigned index)
+  { return this.next_hop(index); }
 
-vector<double> Table::GetRow(int index);
-{
-  return this.matrix[index];
-}
+  // use GetVector(-1) to get own vector
+  vector<double> Table::GetVector(int index)
+  {
+    if (index < 0 ) return matrix[this.index];
+    return matrix[(unsigned)index];
+  }
 
 
 #endif
