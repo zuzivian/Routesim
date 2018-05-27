@@ -169,7 +169,15 @@ void Node::TimeOut()
 
 Node *Node::GetNextHop(const Node *destination) const
 {
-
+  if tbl.GetNextHop == this.GetNumber()
+    return null;
+  for (int i = 0; i < this.GetNeighbors.size() ; i++)
+  {
+      if tbl.GetNextHop == this.GetNeighbors[i].GetNumber()
+        return new Node this.GetNeighbors[i];
+      
+  }
+      
   // returns a Node*
 }
 
