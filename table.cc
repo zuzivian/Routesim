@@ -107,7 +107,7 @@ ostream & Table::Print(ostream &os) const
   }
 
   unsigned Table::GetNextHop(unsigned index) const
-  { return this->next_hop(index); }
+  { return this->next_hop[index]; }
 
   // use GetVector(-1) to get own vector
   std::vector<double> Table::GetVector(int index) const
