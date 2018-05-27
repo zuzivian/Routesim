@@ -175,6 +175,7 @@ Node *Node::GetNextHop(const Node *destination) const
 
 Table *Node::GetRoutingTable() const
 {
+  return new Table(this->tbl);
 }
 
 
