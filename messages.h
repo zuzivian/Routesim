@@ -26,7 +26,7 @@ class RoutingMessage {
 
 #if defined(DISTANCEVECTOR)
 class RoutingMessage {
-
+ public:
   vector<double> dist_vec;
   unsigned sender;
   RoutingMessage();
