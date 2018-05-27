@@ -28,30 +28,30 @@ ostream & Table::Print(ostream &os) const
     this->next_hop = std::vector<unsigned> (sz, ind);
     this->link_cost = std::vector<double> (sz, inf);
     this->matrix = std::vector<std::vector<double> >(sz, std::vector<double>(sz, inf));
-    for (int i = 0; i < sz; i++)
+    for (unsigned i = 0; i < sz; i++)
       matrix[i][i] = 0.0;
   }
 
   Table::Table(const Table &rhs) :
-    index(rhs.index), size(rhs.size), next_hop(rhs.next_hop),
+    size(rhs.size), index(rhs.index), next_hop(rhs.next_hop),
     link_cost(rhs.link_cost), matrix(rhs.matrix)
     {}
 
   ostream & Table::Print(ostream &os) const
   {
     os << "matrix\n";
-    for (int i = 0; i < this->sz ; i++) {
-      for (int j = 0; j < this->sz ; j++) {
+    for (int i = 0; i < this->size ; i++) {
+      for (int j = 0; j < this->size ; j++) {
         os << this->matrix[i][j] << " ";
       }
       os << "\n";
     }
-    os << "\nlink cost\n");
-    for (int i = 0; i < this->sz ; i++) {
+    os << "\nlink cost\n";
+    for (int i = 0; i < this->size ; i++) {
       os << this->link_cost[i] << " ";
     }
     os << "\nnext hop\n";
-    for (int i = 0; i < this->sz ; i++) {
+    for (int i = 0; i < this->size ; i++) {
       os << this->next_hop[i] << " ";
     }
     os << "\n";
@@ -61,18 +61,18 @@ ostream & Table::Print(ostream &os) const
   bool Table::ComputeMatrix()
   {
     //Implement DV
-    inf = std::numeric_limits<double>::infinity();
+    double inf = std::numeric_limits<double>::infinity();
     std::vector<double> best = std::vector<double> (this->size, inf);
     std::vector<unsigned> best_hop = std::vector<unsigned> (this->size, this->index);
     bool updated = false;
     // loop through matrix vectors and update link cost
-    for (int i = 0; i < this->size(); i++)
+    for (unsigned i = 0; i < this->size; i++)
     {
       if (i == this->index) continue; // don't process own row
-      for (int j = 0; j < this->size(); j++)
+      for (unsigned j = 0; j < this->size; j++)
       {
         // process neighbors only
-        if (j == this->index || isinf(link_cost[j])) continue;
+        if (j == this->index || std::isinf(link_cost[j])) continue;
         // take minimum of current value and new value
         double new_cost = this->link_cost[j] + this->matrix[j][i];
         if (new_cost < best[i]) {
@@ -106,11 +106,11 @@ ostream & Table::Print(ostream &os) const
     return ComputeMatrix();
   }
 
-  unsigned Table::GetNextHop(unsigned index)
+  unsigned Table::GetNextHop(unsigned index) const
   { return this->next_hop(index); }
 
   // use GetVector(-1) to get own vector
-  std::vector<double> Table::GetVector(int index)
+  std::vector<double> Table::GetVector(int index) const
   {
     if (index < 0 ) return matrix[this->index];
     return matrix[(unsigned)index];
