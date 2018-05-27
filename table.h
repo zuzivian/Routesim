@@ -34,12 +34,13 @@ class Table {
   int sz;
 
  public:
-  Table(int sz);
+  Table();
   ostream & Print(ostream &os) const;
   void AddRow();
   void RemoveRow(int index);
   void UpdateRow(int index, vector<double> dist, vector<double> prev);
-  void GetRow(int index);
+  vector<double> GetDistRow(int index);
+  vector<double> GetPrevRow(int index);
 };
 #endif
 
