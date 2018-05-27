@@ -27,7 +27,7 @@ ostream & Table::Print(ostream &os) const
     // initialize all next_hops as unreachable
     this.next_hop = std::vector<unsigned> (sz, ind);
     this.link_cost = std::vector<double> (sz, inf);
-    this.matrix = std::vector<std::vector<double>>(sz, std::vector<double>(sz, inf));
+    this.matrix = std::vector<std::vector<double> >(sz, std::vector<double>(sz, inf));
     for (int i = 0; i < sz; i++)
       matrix[i][i] = 0.0;
   }

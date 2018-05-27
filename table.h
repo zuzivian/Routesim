@@ -38,7 +38,7 @@ class Table {
   unsigned index;
   std::vector<unsigned> next_hop;
   std::vector<double> link_cost;
-  std::vector<std::vector<double>> matrix;
+  std::vector<std::vector<double> > matrix;
 
  public:
   Table();
