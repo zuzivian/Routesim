@@ -222,6 +222,7 @@ Node *Node::GetNextHop(const Node *destination)
       if (nexthop == neighbors[i]->GetNumber())
         return new Node(*neighbors[i]);
   }
+  throw GeneralException();
 }
 
 Table *Node::GetRoutingTable() const

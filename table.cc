@@ -19,7 +19,7 @@ ostream & Table::Print(ostream &os) const
 
   Table::Table() {}
 
-  Table(unsigned ind, unsigned sz)
+  Table::Table(unsigned ind, unsigned sz)
   {
     double inf = std::numeric_limits<double>::infinity();
     this->index = ind;
@@ -32,7 +32,7 @@ ostream & Table::Print(ostream &os) const
       matrix[i][i] = 0.0;
   }
 
-  Table(const Table &rhs) :
+  Table::Table(const Table &rhs) :
     index(rhs.index), size(rhs.size), next_hop(rhs.next_hop),
     link_cost(rhs.link_cost), matrix(rhs.matrix)
     {}
