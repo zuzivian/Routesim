@@ -48,6 +48,6 @@ RoutingMessage::RoutingMessage(unsigned sender, std::vector<double> vec)
 }
 
 RoutingMessage::RoutingMessage(const RoutingMessage &rhs) :
-dist_vec(rhs.dist_vec) sender(rhs.sender) {}
+  dist_vec(rhs.dist_vec), sender(rhs.sender) {}
 
 #endif
