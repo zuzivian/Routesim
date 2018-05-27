@@ -51,7 +51,6 @@ def generate_simulation(n, degree, time, filename):
         # print routing results
         for i in range(n):
             file.write("%d DUMP_TABLE %d\n" % (10*time, i))
-            file.write("%d DRAW_TREE %d\n" % (10*time, i))
 
 
 if __name__ == "__main__":
@@ -59,7 +58,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='Generate random network simulation data files (.topo and .event) for Routesim.')
     parser.add_argument('--nodes', dest='n', action='store',
-                        default=20, help='number of nodes in the graph')
+                        default=10, help='number of nodes in the graph')
     parser.add_argument('--degree', dest='degree', action='store',
                         default=3, help='number of edges connected to each node')
     parser.add_argument('--time', dest='time', action='store',
