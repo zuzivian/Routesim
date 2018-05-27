@@ -220,7 +220,7 @@ Node *Node::GetNextHop(const Node *destination)
   for (unsigned i = 0; i < neighbors.size() ; i++)
   {
       if (nexthop == neighbors[i]->GetNumber())
-        return new Node(neighbors[i]);
+        return new Node(*neighbors[i]);
   }
 }
 
