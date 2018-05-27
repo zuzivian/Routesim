@@ -44,7 +44,7 @@ Node::~Node()
 void Node::SendToNeighbors(const RoutingMessage *m)
 {
   deque<Node*> neighbors = *this->GetNeighbors();
-  for (int i=0; i< neighbors.size(); i++)
+  for (unsigned i=0; i < neighbors.size(); i++)
   {
     SendToNeighbor(neighbors[i], m);
   }
@@ -52,7 +52,7 @@ void Node::SendToNeighbors(const RoutingMessage *m)
 
 void Node::SendToNeighbor(const Node *n, const RoutingMessage *m)
 {
-  Link x = Link(src->GetNumber(),dest->GetNumber(),0,0,0);
+  Link x = Link(this->GetNumber(),n->GetNumber(),0,0,0);
   Link *l = context->FindMatchingLink(&x);
 
   context->PostEvent(new Event(context->GetTime()+l->GetLatency(),
@@ -169,12 +169,12 @@ void Node::LinkHasBeenUpdated(const Link *l)
   unsigned dest = l->GetDest();
   unsigned src = l->GetSrc();
 
-  if (src != this.GetNumber()) return; // invalid link
+  if (src != this->GetNumber()) return; // invalid link
 
-  bool updated = this.tbl.UpdateLink(dest, newlat);
+  bool updated = this->tbl.UpdateLink(dest, newlat);
   if (updated)
   {
-    std::vector<double> new_vec = this.tbl.GetVector(-1);
+    std::vector<double> new_vec = this->tbl.GetVector(-1);
     const RoutingMessage* routing_message = new RoutingMessage(src, new_vec);
     // send messages to all neighbors
     SendToNeighbors(routing_message);
