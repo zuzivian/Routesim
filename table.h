@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -50,7 +51,7 @@ class Table {
   bool ComputeMatrix();
   bool UpdateMatrix(unsigned index, vector<double> vec);
   bool UpdateLink(unsigned n, double d);
-  unsigned GetNextHop(unsigned n) const;
+  unsigned GetNextHop(unsigned index) const;
   std::vector<double> GetVector(int index) const;
 
 };

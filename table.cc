@@ -40,18 +40,18 @@ ostream & Table::Print(ostream &os) const
   ostream & Table::Print(ostream &os) const
   {
     os << "matrix\n";
-    for (int i = 0; i < this->size ; i++) {
-      for (int j = 0; j < this->size ; j++) {
+    for (unsigned i = 0; i < this->size ; i++) {
+      for (unsigned j = 0; j < this->size ; j++) {
         os << this->matrix[i][j] << " ";
       }
       os << "\n";
     }
     os << "\nlink cost\n";
-    for (int i = 0; i < this->size ; i++) {
+    for (unsigned i = 0; i < this->size ; i++) {
       os << this->link_cost[i] << " ";
     }
     os << "\nnext hop\n";
-    for (int i = 0; i < this->size ; i++) {
+    for (unsigned i = 0; i < this->size ; i++) {
       os << this->next_hop[i] << " ";
     }
     os << "\n";
