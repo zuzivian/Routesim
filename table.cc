@@ -1,6 +1,7 @@
 #include "table.h"
 
 #if defined(GENERIC)
+
 ostream & Table::Print(ostream &os) const
 {
   // WRITE THIS
@@ -11,6 +12,11 @@ ostream & Table::Print(ostream &os) const
 
 #if defined(LINKSTATE)
 
+
+#endif
+
+#if defined(DISTANCEVECTOR)
+
 Table::Table()
 {}
 
@@ -19,28 +25,38 @@ Table::Table(int sz)
   vector<vector<double> > matrix(sz);
   for ( int i = 0 ; i < sz ; i++ )
      matrix[i].resize(sz);
-   this.dist = matrix;
-   this.prev = matrix;
+   this.matrix = matrix;
+   // this.prev = matrix;
    this.sz = sz;
 }
 
 ostream & Table::Print(ostream &os) const
 {
-  // WRITE THIS
-  os << "Table()";
+  char[] string = "";
+
+  for (int i = 0; i < this.sz ; i++) {
+    for (int j = 0; j < this.sz ; j++) {
+      string = strcat(string, this.matrix[i][j]);
+      string = strcat(string, " ");
+    }
+    string = strcat(string, "\n");
+  }
+  string = strcat(string, "\n\n");
+
+
+  os << string;
   return os;
 }
+
 void Table::AddRow();
 {
   vector<double> newrow(sz);
   // add the rows
-  this.dist.pushback(newrow);
-  this.prev.pushback(newrow);
+  this.matrix.pushback(newrow);
   for ( int i = 0 ; i < sz+1 ; i++ )
   {
     // we add the columns now
-    this.dist[i].pushback(0.0);
-    this.prev[i].pushback(0.0);
+    this.matrix[i].pushback(0.0);
   }
   this.sz++;
   return;
@@ -48,36 +64,24 @@ void Table::AddRow();
 
 void Table::RemoveRow(int index);
 {
-  this.dist.erase(this.dist.begin()+index);
-  this.prev.erase(this.prev.begin()+index);
+  this.matrix.erase(this.matrix.begin()+index);
   for ( int i = 0 ; i < sz - 1 ; i++ )
   {
-    this.dist[i].erase(this.dist[i].begin()+index);
-    this.prev[i].erase(this.prev[i].begin()+index);
+    this.matrix[i].erase(this.matrix[i].begin()+index);
   }
   return;
 }
 
-void Table::UpdateRow(int index, vector<double> dist, vector<double> prev);
+void Table::UpdateRow(int index, vector<double> row);
 {
-  this.dist[index] = dist;
-  this.prev[index] = prev;
+  this.matrix[index] = row;
+  // this.prev[index] = prev;
 }
 
-vector<double> Table::GetDistRow(int index);
+vector<double> Table::GetRow(int index);
 {
-  return this.dist[index];
+  return this.matrix[index];
 }
-
-
-vector<double> Table::GetPrevRow(int index);
-{
-  return this.prev[index];
-}
-
-#endif
-
-#if defined(DISTANCEVECTOR)
 
 
 #endif

@@ -29,8 +29,7 @@ class Table {
 #include <deque>
 
 class Table {
-  vector<vector<double>> dist;
-  vector<vector<double>> prev;
+  vector<vector<double>> matrix;
   int sz;
 
  public:
@@ -38,9 +37,8 @@ class Table {
   ostream & Print(ostream &os) const;
   void AddRow();
   void RemoveRow(int index);
-  void UpdateRow(int index, vector<double> dist, vector<double> prev);
-  vector<double> GetDistRow(int index);
-  vector<double> GetPrevRow(int index);
+  void UpdateRow(int index, vector<double> row);
+  vector<double> GetRow(int index);
 };
 #endif
 
