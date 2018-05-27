@@ -51,7 +51,7 @@ ostream & Table::Print(ostream &os) const
     for (int i = 0; i < this.sz ; i++) {
       os << this.link_cost[i] << " ";
     }
-    os << "\nnext hops\n";
+    os << "\nnext hop\n";
     for (int i = 0; i < this.sz ; i++) {
       os << this.next_hop[i] << " ";
     }
@@ -61,19 +61,45 @@ ostream & Table::Print(ostream &os) const
 
   bool Table::ComputeMatrix()
   {
-    //TODO: Implement DV
-    return false;
+    //Implement DV
+    inf = std::numeric_limits<double>::infinity();
+    vector<double> best = vector<double> (this.size, inf);
+    vector<unsigned> best_hop = vector<unsigned> (this.size, this.index);
+    bool updated = false;
+    // loop through matrix vectors and update link cost
+    for (int i = 0; i < this.size(); i++)
+    {
+      if (i == this.index) continue; // don't process own row
+      for (int j = 0; j < this.size(); j++)
+      {
+        // process neighbors only
+        if (j == this.index || isinf(link_cost[j])) continue;
+        // take minimum of current value and new value
+        double new_cost = this.link_cost[j] + this.matrix[j][i];
+        if (new_cost < best[i]) {
+          // update best_dist
+          best[i] = new_cost;
+          best_hop[i] = j;
+        }
+      }
+      if (matrix[this.index][i] != best[i]) updated = true;
+      matrix[this.index][i] = best[i];
+      next_hop[i] = best_hop[i];
+    }
+    return updated;
   }
 
   // Takes a distance vector from neighbor and add to matrix, then update matrix.
+  // returns true if matrix was updated
   bool Table::UpdateMatrix(unsigned index, vector<double> vec) {
     if (index != this.index) return false;
-    if (vec.size != this.size) return false;
+    if (vec.size() != this.size) return false;
     this.matrix[index] = vec;
     return ComputeMatrix();
   }
 
   // Takes a link cost from neighbor and add to cost vector, then update matrix.
+  // returns true if matrix was updated
   bool Table::UpdateLink(unsigned index, double newcost)
   {
     if (index != this.index) return false;
