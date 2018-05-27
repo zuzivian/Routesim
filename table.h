@@ -49,8 +49,8 @@ class Table {
   bool ComputeMatrix();
   bool UpdateMatrix(unsigned index, vector<double> vec);
   bool UpdateLink(unsigned n, double d);
-  unsigned GetNextHop(unsigned n);
-  std::vector<double> GetVector(int index);
+  unsigned GetNextHop(unsigned n) const;
+  std::vector<double> GetVector(int index) const;
 
 };
 #endif
