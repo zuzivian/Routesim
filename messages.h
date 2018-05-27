@@ -27,7 +27,11 @@ class RoutingMessage {
 #if defined(DISTANCEVECTOR)
 class RoutingMessage {
 
+  vector<double> dist_vec;
+  unsigned sender;
+
   RoutingMessage();
+  RoutingMessage(vector<double> v);
   RoutingMessage(const RoutingMessage &rhs);
   RoutingMessage &operator=(const RoutingMessage &rhs);
 
