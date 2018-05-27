@@ -2,10 +2,11 @@
 #include "context.h"
 #include "error.h"
 
-
 Node::Node(const unsigned n, SimulationContext *c, double b, double l) :
     number(n), context(c), bw(b), lat(l)
-{}
+{
+  this->tbl = Table(n, 25);
+}
 
 Node::Node()
 { throw GeneralException(); }
