@@ -56,7 +56,7 @@ bool Table::UpdateMessageLink(unsigned id, unsigned sender, const Link l)
 
 Link Table::GetLink(unsigned src, unsigned dest)
 {
-  return new *Link(src,dest,0,0,0);
+  return new Link(src,dest,0,0,0);
 }
 
 Link Table::GetLinkID(unsigned src, unsigned dest)
