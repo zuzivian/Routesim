@@ -171,6 +171,12 @@ void Node::LinkHasBeenUpdated(const Link *l)
   double newlat = l->GetLatency();
   unsigned dest = l->GetDest();
 
+  if (src != this->GetNumber())
+  {
+    cerr << *this<<": Invalid Link!"<<endl;
+    return; // invalid link
+  }
+
   if (this->tbl.UpdateLink(dest, newlat))
   {
     //cout << this->tbl.Print(cout);
