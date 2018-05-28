@@ -15,7 +15,7 @@ ostream & Table::Print(ostream &os) const
 
 Table::Table()
 {
-  cerr << "RoutingMessage: no table number\n";
+  cerr << "Table(): no table number\n";
   throw GeneralException();
 }
 
