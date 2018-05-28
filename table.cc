@@ -90,8 +90,8 @@ ostream & Table::Print(ostream &os) const
 
   // Takes a distance vector from neighbor and add to matrix, then update matrix.
   // returns true if matrix was updated
-  bool Table::UpdateMatrix(unsigned index, std::vector<double> vec) {
-    if (index == this->index) {
+  bool Table::UpdateMatrix(unsigned ind, std::vector<double> vec) {
+    if (ind == this->index) {
       cerr << *this <<": Cannot update own vector!"<<endl;
       return false;
     }
@@ -99,31 +99,31 @@ ostream & Table::Print(ostream &os) const
       cerr << *this <<": Invalid vector length!"<<endl;
       return false;
     }
-    this->matrix[index] = vec;
+    this->matrix[ind] = vec;
     return ComputeMatrix();
   }
 
   // Takes a link cost from neighbor and add to cost vector, then update matrix.
   // returns true if matrix was updated
-  bool Table::UpdateLink(unsigned index, double newcost)
+  bool Table::UpdateLink(unsigned ind, double newcost)
   {
-    if (index == this->index)
+    if (ind == this->index)
     {
       cerr << *this <<": Cannot update own node cost!"<<endl;
       return false;
     }
-    this->link_cost[index] = newcost;
+    this->link_cost[ind] = newcost;
     return ComputeMatrix();
   }
 
-  unsigned Table::GetNextHop(unsigned index) const
-  { return this->next_hop[index]; }
+  unsigned Table::GetNextHop(unsigned ind) const
+  { return this->next_hop[ind]; }
 
   // use GetVector(-1) to get own vector
-  std::vector<double> Table::GetVector(int index) const
+  std::vector<double> Table::GetVector(int ind) const
   {
-    if (index < 0 ) return matrix[this->index];
-    return matrix[(unsigned)index];
+    if (ind < 0 ) return matrix[this->index];
+    return matrix[(unsigned)ind];
   }
 
 
