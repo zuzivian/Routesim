@@ -52,7 +52,7 @@ class Table {
   bool UpdateMatrix(unsigned ind, vector<double> vec);
   bool UpdateLink(unsigned n, double d);
   unsigned GetNextHop(unsigned ind) const;
-  std::vector<double> GetVector(int ind) const;
+  std::vector<double> GetVector() const;
 
 };
 #endif

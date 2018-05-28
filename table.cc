@@ -121,10 +121,9 @@ ostream & Table::Print(ostream &os) const
   { return this->next_hop[ind]; }
 
   // use GetVector(-1) to get own vector
-  std::vector<double> Table::GetVector(int ind) const
+  std::vector<double> Table::GetVector() const
   {
-    if (ind < 0 ) return matrix[this->index];
-    return matrix[(unsigned)ind];
+    return matrix[this->index];
   }
 
 
