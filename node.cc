@@ -6,11 +6,11 @@ Node::Node(const unsigned n, SimulationContext *c, double b, double l) :
     number(n), context(c), bw(b), lat(l)
 {
   #if defined(DISTANCEVECTOR)
-  this->tbl = Table(n, 25);
+    this->tbl = Table(n, 25);
   #endif
 
   #if defined(LINKSTATE)
-  this->tbl = Table(n);
+    this->tbl = Table(n);
   #endif
 }
 
