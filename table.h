@@ -39,7 +39,6 @@ class Table {
   bool UpdateLink(const Link l);
   bool UpdateMessageLink(unsigned id, unsigned sender, const Link l);
 
-  Link GetLink(unsigned src, unsigned dest);
   unsigned GetLinkID(unsigned src, unsigned dest);
   unsigned GetNextHop(unsigned ind) const;
 

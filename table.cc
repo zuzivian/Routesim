@@ -54,11 +54,6 @@ bool Table::UpdateMessageLink(unsigned id, unsigned sender, const Link l)
   return this->ComputeDijkstra();
 }
 
-Link Table::GetLink(unsigned src, unsigned dest)
-{
-  return new Link(src,dest,0,0,0);
-}
-
 Link Table::GetLinkID(unsigned src, unsigned dest)
 {
   return 0;
