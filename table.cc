@@ -15,14 +15,16 @@ ostream & Table::Print(ostream &os) const
 
 Table::Table()
 {
-  cerr << "Table(): no table number\n";
-  throw GeneralException();
+  // cerr << "Table(): no table number\n";
+  // throw GeneralException();
 }
 
 Table::Table(unsigned ind)
 {
-  // initializa topology here
   this->index = ind;
+  this->next_hop = map<unsigned, unsigned> ();
+  this->t = map<unsigned, map<unsigned, Link>> ();
+  this->id = map<unsigned, map<unsigned, unsigned> > ();
 }
 
 Table::Table(const Table &rhs) :
