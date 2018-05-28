@@ -1,5 +1,5 @@
 #include "messages.h"
-
+#include "error.h"
 
 #if defined(GENERIC)
 ostream &RoutingMessage::Print(ostream &os) const
