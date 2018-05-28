@@ -69,7 +69,6 @@ ostream & Table::Print(ostream &os) const
     for (unsigned i = 0; i < this->size; i++)
     {
       if (i == this->index) continue; // don't process own row
-      cerr << best[i] << endl;
       for (unsigned j = 0; j < this->size; j++)
       {
         // process neighbors only
@@ -82,6 +81,7 @@ ostream & Table::Print(ostream &os) const
           best_hop[i] = j;
         }
       }
+      cerr << best[i] << endl;
       if (matrix[this->index][i] != best[i]) updated = true;
       matrix[this->index][i] = best[i];
       next_hop[i] = best_hop[i];
