@@ -26,7 +26,7 @@ RoutingMessage::RoutingMessage()
   throw GeneralException();
 }
 
-RoutingMessage::RoutingMessage(unsigned id, unsigned src, const Link l)
+RoutingMessage::RoutingMessage(unsigned id, unsigned src, Link l)
 {
   this->id = id;
   this->sender = src;

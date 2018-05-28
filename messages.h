@@ -18,10 +18,10 @@ class RoutingMessage {
  public:
   unsigned id;
   unsigned sender;
-  const Link link;
+  Link link;
 
   RoutingMessage();
-  RoutingMessage(unsigned id, unsigned src, const Link l);
+  RoutingMessage(unsigned id, unsigned src, Link l);
   RoutingMessage(const RoutingMessage &rhs);
   RoutingMessage &operator=(const RoutingMessage &rhs);
 
