@@ -181,7 +181,7 @@ void Node::LinkHasBeenUpdated(const Link *l)
   bool updated = this->tbl.UpdateLink(dest, newlat);
   if (updated)
   {
-    cout << this->tbl.Print(cout);
+    //cout << this->tbl.Print(cout);
     std::vector<double> new_vec = this->tbl.GetVector(-1);
     const RoutingMessage* routing_message = new RoutingMessage(src, new_vec);
     // send messages to all neighbors
