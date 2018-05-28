@@ -49,22 +49,22 @@ bool Table::UpdateLink(const Link l)
   return this->ComputeDijkstra();
 }
 
-bool UpdateMessageLink(unsigned id, unsigned sender, const Link l)
+bool Table::UpdateMessageLink(unsigned id, unsigned sender, const Link l)
 {
   return this->ComputeDijkstra();
 }
 
-Link GetLink(unsigned src, unsigned dest)
+Link Table::GetLink(unsigned src, unsigned dest)
 {
   return new *Link(src,dest,0,0,0);
 }
 
-Link GetLinkID(unsigned src, unsigned dest)
+Link Table::GetLinkID(unsigned src, unsigned dest)
 {
   return 0;
 }
 
-unsigned GetNextHop(unsigned ind) const
+unsigned Table::GetNextHop(unsigned ind) const
 {
   return this->next_hop[ind];
 }
