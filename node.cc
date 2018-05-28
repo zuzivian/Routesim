@@ -9,7 +9,7 @@ Node::Node(const unsigned n, SimulationContext *c, double b, double l) :
   this->tbl = Table(n, 25);
   #endif
 
-  #if defined(LLINKSTATE)
+  #if defined(LINKSTATE)
   this->tbl = Table(n);
   #endif
 }
