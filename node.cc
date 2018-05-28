@@ -173,7 +173,7 @@ void Node::TimeOut()
   cerr << *this << " got a timeout: ignored"<<endl;
 }
 
-Node *Node::GetNextHop(const Node *destination) const
+Node *Node::GetNextHop(const Node *destination)
 {
   // returns a Node*
   unsigned num = this->GetNumber();
