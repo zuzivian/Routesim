@@ -183,7 +183,7 @@ void Node::LinkHasBeenUpdated(const Link *l)
   {
     //cout << this->tbl.Print(cout);
     std::vector<double> new_vec = this->tbl.GetVector(-1);
-    const RoutingMessage* routing_message = new RoutingMessage(src, new_vec);
+    const RoutingMessage* routing_message = new RoutingMessage(number, new_vec);
     // send messages to all neighbors
     SendToNeighbors(routing_message);
   }
