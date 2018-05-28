@@ -69,6 +69,7 @@ ostream & Table::Print(ostream &os) const
     for (unsigned i = 0; i < this->size; i++)
     {
       if (i == this->index) continue; // don't process own row
+      cerr << best[i] << endl;
       for (unsigned j = 0; j < this->size; j++)
       {
         // process neighbors only
