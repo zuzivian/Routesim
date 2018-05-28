@@ -60,7 +60,7 @@ unsigned Table::GetLinkID(unsigned src, unsigned dest)
   return this->id[src][dest];
 }
 
-unsigned Table::GetNextHop(unsigned ind) const
+unsigned Table::GetNextHop(unsigned ind)
 {
   return this->next_hop[ind];
 }
