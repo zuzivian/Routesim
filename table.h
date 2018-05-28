@@ -32,10 +32,11 @@ class Table {
   ostream & Print(ostream &os) const;
 
   bool ComputeDijkstra();
-  bool UpdateLink(const Link *l);
-  bool UpdateMessageLink(unsigned id, unsigned sender, const Link *l);
+  bool UpdateLink(const Link l);
+  bool UpdateMessageLink(unsigned id, unsigned sender, const Link l);
 
-  bool GetLink(unsigned src, unsigned dest);
+  Link GetLink(unsigned src, unsigned dest);
+  unsigned GetLinkID(unsigned src, unsigned dest);
   unsigned GetNextHop(unsigned ind) const;
 
 };
