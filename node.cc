@@ -138,7 +138,7 @@ void Node::LinkHasBeenUpdated(const Link *l)
     cout << this->tbl.Print(cout);
     // send messages to all neighbors
     cerr << *this << ": Table updated. Forwarding message to neighbors." << endl;
-    unsigned id =  this->tbl.GetLinkID(l->src, l->dest);
+    unsigned id =  this->tbl.GetLinkID(l->GetSrc(), l->GetDest());
     const RoutingMessage* m = new RoutingMessage(id, number, *l);
     SendToNeighbors(m);
   }
