@@ -72,7 +72,7 @@ ostream & Table::Print(ostream &os) const
       for (unsigned j = 0; j < this->size; j++)
       {
         // process neighbors only
-        if (j == this->index || std::isinf(this->link_cost[j])) continue;
+        if (j == this->index) continue;
         // take minimum of current value and new value
         double new_cost = this->link_cost[j] + this->matrix[j][i];
         if (new_cost < best) {
