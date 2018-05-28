@@ -15,6 +15,7 @@ class RoutingMessage {
 
 #if defined(LINKSTATE)
 class RoutingMessage {
+ public:
   unsigned id;
   unsigned sender;
   const Link *link;
