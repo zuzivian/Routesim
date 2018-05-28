@@ -82,9 +82,9 @@ ostream & Table::Print(ostream &os) const
         }
       }
       cerr << best[i] << " vs "<< matrix[this->index][i] << endl;
-      if (matrix[this->index][i] != best[i]) updated = true;
-      matrix[this->index][i] = best[i];
-      next_hop[i] = best_hop[i];
+      if (this->matrix[this->index][i] != best[i]) updated = true;
+      this->matrix[this->index][i] = best[i];
+      this->next_hop[i] = best_hop[i];
     }
     return updated;
   }
