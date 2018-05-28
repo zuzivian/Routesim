@@ -136,8 +136,9 @@ void Node::LinkHasBeenUpdated(const Link *l)
   if (this->tbl.UpdateLink(l))
   {
     cout << this->tbl.Print(cout);
-    std::vector<double> my_vec = this->tbl.GetVector();
-    const RoutingMessage* routing_message = new RoutingMessage(counter, number, my_vec);
+    unsigned id = 0; // need to get this from table!
+    const Link *new_link = new Link();
+    const RoutingMessage* routing_message = new RoutingMessage(id, number, new_link);
     // send messages to all neighbors
     SendToNeighbors(routing_message);
   }
@@ -153,11 +154,12 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
   cerr << *this <<": Received message from "<<m->sender<<endl;
   cerr << m->Print(cerr)<<endl;
 
-  if (this->tbl.UpdateMatrix(src, new_vec))
+  if (this->tbl.UpdateMessageLink(m->id, m->sender, m->link))
   {
     cout << this->tbl.Print(cout);
-    std::vector<double> my_vec = this->tbl.GetVector();
-    const RoutingMessage* routing_message = new RoutingMessage(number, my_vec);
+    unsigned id = 0; // need to get this from table!
+    const Link *new_link = new Link();
+    const RoutingMessage* routing_message = new RoutingMessage(id, number, new_link);
     // send messages to all neighbors
     SendToNeighbors(routing_message);
   }
