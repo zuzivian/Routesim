@@ -198,8 +198,13 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 {
   unsigned src = m->sender;
   std::vector<double> new_vec = m->dist_vec;
+  cerr<<*this<<": Received message from "<<src<<":  "<<new_vec<<endl;
 
-  if (src != this->GetNumber()) return; // invalid message
+  if (src != this->GetNumber())
+  {
+    cerr<<*this<<": Error invalid message. Wrong src."<<endl;
+    return; // invalid message
+  }
 
   bool updated = this->tbl.UpdateMatrix(src, new_vec);
   if (updated)
@@ -210,6 +215,8 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
     // send messages to all neighbors
     SendToNeighbors(routing_message);
   }
+  else
+
 
 }
 
