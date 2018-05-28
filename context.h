@@ -44,7 +44,7 @@ inline ostream & operator<<(ostream &os, SimulationContext &s)
 
 
 
-  
+
 
 
 #endif
