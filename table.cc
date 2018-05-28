@@ -65,7 +65,7 @@ unsigned Table::GetNextHop(unsigned ind) const
 }
 
 
-bool Table::ComputeMatrix(Node v, array vl, double lat, Node first, Node prev)
+bool ComputeMatrix(Node v, array vl, double lat, Node first, Node prev)
 {
   for(i== 0; i < v.GetNeighbors.size(); i++)
   {
