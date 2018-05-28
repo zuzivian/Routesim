@@ -31,7 +31,7 @@ Table::Table(const Table &rhs) :
 ostream & Table::Print(ostream &os) const
 {
   os << "\nnext hop\n";
-  for (unsigned i = 0; i < this->size ; i++) {
+  for (unsigned i = 0; i < next_hop.size() ; i++) {
     os << this->next_hop[i] << " ";
   }
   os << "\n";
