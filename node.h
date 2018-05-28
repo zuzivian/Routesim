@@ -5,6 +5,7 @@
 #include <iostream>
 #include <deque>
 
+#include "table.h"
 
 class RoutingMessage;
 class Table;

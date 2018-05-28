@@ -8,7 +8,7 @@
 #include <cmath>
 #include <map>
 
-class Link;
+#include "link.h"
 
 using namespace std;
 
