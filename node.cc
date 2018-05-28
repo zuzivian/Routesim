@@ -203,7 +203,7 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
   if (this->tbl.UpdateMatrix(src, new_vec))
   {
     cout << this->tbl.Print(cout);
-    std::vector<double> my_vec = this->tbl.GetVector(-1);
+    std::vector<double> my_vec = this->tbl.GetVector();
     const RoutingMessage* routing_message = new RoutingMessage(number, my_vec);
     // send messages to all neighbors
     SendToNeighbors(routing_message);
