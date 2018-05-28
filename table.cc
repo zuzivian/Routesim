@@ -15,8 +15,8 @@ ostream & Table::Print(ostream &os) const
 
 Table::Table()
 {
-  // cerr << "Table(): no table number\n";
-  // throw GeneralException();
+  cerr << "Table(): no table number\n";
+  throw GeneralException();
 }
 
 Table::Table(unsigned ind)
