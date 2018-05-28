@@ -22,7 +22,7 @@ ostream &RoutingMessage::Print(ostream &os) const
 
 RoutingMessage::RoutingMessage()
 {
-  cerr << "RoutingMessage: empy message\n";
+  cerr << "RoutingMessage: empty message\n";
   throw GeneralException();
 }
 

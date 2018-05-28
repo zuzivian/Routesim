@@ -1,4 +1,5 @@
 #include "table.h"
+#include "error.h"
 
 #if defined(GENERIC)
 
@@ -12,6 +13,11 @@ ostream & Table::Print(ostream &os) const
 
 #if defined(LINKSTATE)
 
+  Table::Table()
+  {
+    cerr << "RoutingMessage: no table number\n";
+    throw GeneralException();
+  }
 
 #endif
 
