@@ -33,8 +33,9 @@ class Table {
 
   bool ComputeDijkstra();
   bool UpdateLink(const Link *l);
-  bool GetLink(unsigned src, unsigned dest);
   bool UpdateMessageLink(const Link *l, unsigned id);
+  
+  bool GetLink(unsigned src, unsigned dest);
   unsigned GetNextHop(unsigned ind) const;
 
 };
