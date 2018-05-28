@@ -211,6 +211,7 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
   else
   {
     cerr << *this << ": No updates to table." << endl;
+    cout << this->tbl.Print(cout);
   }
 
 }
