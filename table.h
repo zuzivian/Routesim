@@ -26,7 +26,8 @@ class Table {
 class Table {
   // Students should write this class
  public:
-  map<int, double > next_hop;
+  unsigned index;
+  map<unsigned, double > next_hop;
   // need a structure here to capture network topology-> vector/map of Links?
 
   Table();

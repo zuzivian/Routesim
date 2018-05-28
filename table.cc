@@ -19,6 +19,57 @@ Table::Table()
   throw GeneralException();
 }
 
+Table::Table(unsigned ind)
+{
+  // initializa topology here
+  this->index = ind;
+}
+
+Table::Table(const Table &rhs) :
+  index(rhs.index), next_hop(rhs.next_hop) {}
+
+ostream & Table::Print(ostream &os) const
+{
+  os << "\nnext hop\n";
+  for (unsigned i = 0; i < this->size ; i++) {
+    os << this->next_hop[i] << " ";
+  }
+  os << "\n";
+  return os;
+}
+
+
+bool Table::ComputeDijkstra()
+{
+  return false;
+}
+
+bool Table::UpdateLink(const Link l)
+{
+  return ComputeDijkstra();
+}
+
+bool UpdateMessageLink(unsigned id, unsigned sender, const Link l)
+{
+  return ComputeDijkstra();
+}
+
+Link GetLink(unsigned src, unsigned dest)
+{
+  return new *Link(src,dest,0,0,0);
+}
+
+Link GetLinkID(unsigned src, unsigned dest)
+{
+  return 0;
+}
+
+unsigned GetNextHop(unsigned ind) const
+{
+  return next_hop[ind];
+}
+
+
 bool Table::ComputeMatrix(Node v, array vl, double lat, Node first, Node prev)
 {
   for(i== 0, i < v.GetNeighbors.size(), i++)
