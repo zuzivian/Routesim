@@ -31,7 +31,7 @@ Table::Table(const Table &rhs) :
 ostream & Table::Print(ostream &os) const
 {
   os << "\nnext hop\n";
-  map<string, int>::iterator it;
+  map<unsigned, double>::iterator it;
   for (it = next_hop.begin(); it != next_hop.end(); it++) {
     os << it->first << ": " << it->second << endl;
   }
