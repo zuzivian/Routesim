@@ -72,14 +72,14 @@ unsigned Table::GetNextHop(unsigned ind) const
 
 bool Table::ComputeMatrix(Node v, array vl, double lat, Node first, Node prev)
 {
-  for(i== 0, i < v.GetNeighbors.size(), i++)
+  for(i== 0; i < v.GetNeighbors.size(); i++)
   {
     n = v.GetNeighbors[i];
     lat = lat + n.GetLatency;
-    vl.append([n.GetNumber, lat)
+    vl.append([n.GetNumber, lat);
     if v != first.GetNumber and != prev.GetNumber
       ComputeMatrix(n, vl, lat, first, v);
-    return vl
+    return vl;
 
   }
 }
