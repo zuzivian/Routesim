@@ -51,6 +51,7 @@ def generate_simulation(n, degree, time, filename):
         # print routing results
         for i in range(n):
             file.write("%d DUMP_TABLE %d\n" % (10*time, i))
+            file.write("%d DRAW_TREE %d\n" % (10*time, i))
 
 
 if __name__ == "__main__":
