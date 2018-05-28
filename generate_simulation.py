@@ -29,11 +29,11 @@ def generate_simulation(n, degree, time, filename):
             for j in range(int(math.floor(math.log(n,2)))):
                 offset = 1<<j
                 for neighbor in [i+offset, i-offset]:
-                    avail = 1
+                    avail = True
                     for (a, b, c) in links:
                         if (a==j and b==neighbor):
                             avail_degree -= 1
-                            avail = 0
+                            avail = False
                             break
                     if avail:
                         possible_neighbors.append(neighbor)
