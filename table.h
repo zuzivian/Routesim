@@ -26,7 +26,7 @@ class Table {
   map< int, double > dist;
 
   Table();
-  Table(unsigned number);
+  Table(unsigned num);
   Table(const Table &rhs);
   ostream & Print(ostream &os) const;
 
