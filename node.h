@@ -59,7 +59,7 @@ class Node {
   virtual void LinkHasBeenUpdated(const Link *l);
   virtual void ProcessIncomingRoutingMessage(const RoutingMessage *m);
   virtual void TimeOut();
-  virtual Node *GetNextHop(const Node *destination);
+  virtual Node *GetNextHop(const Node *destination) const;
   virtual Table *GetRoutingTable() const;
 
   virtual ostream & Print(ostream &os) const;

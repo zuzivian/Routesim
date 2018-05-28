@@ -222,7 +222,7 @@ void Node::TimeOut()
 }
 
 
-Node *Node::GetNextHop(const Node *destination)
+Node *Node::GetNextHop(const Node *destination) const
 {
   // returns a Node*
   unsigned num = this->GetNumber();
