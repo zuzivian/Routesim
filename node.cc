@@ -187,6 +187,10 @@ void Node::LinkHasBeenUpdated(const Link *l)
     // send messages to all neighbors
     SendToNeighbors(routing_message);
   }
+  else
+  {
+    cerr << *this<<": No update!"<<endl;
+  }
 }
 
 
