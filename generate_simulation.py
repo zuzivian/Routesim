@@ -31,7 +31,7 @@ def generate_simulation(n, degree, time, filename):
                 for neighbor in [i+offset, i-offset]:
                     avail = True
                     for (a, b, c) in links:
-                        if (b==j and a==neighbor):
+                        if (b==i and a==neighbor):
                             avail_degree -= 1
                             avail = False
                             break
