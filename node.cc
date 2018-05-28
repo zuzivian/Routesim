@@ -189,7 +189,7 @@ void Node::LinkHasBeenUpdated(const Link *l)
   }
   else
   {
-    cerr << *this<<": No update!"<<endl;
+    cerr << *this <<": No update!"<<endl;
   }
 }
 
