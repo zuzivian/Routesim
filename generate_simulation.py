@@ -59,7 +59,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='Generate random network simulation data files (.topo and .event) for Routesim.')
     parser.add_argument('--nodes', dest='n', action='store',
-                        default=12, help='number of nodes in the graph')
+                        default=20, help='number of nodes in the graph')
     parser.add_argument('--degree', dest='degree', action='store',
                         default=2, help='number of edges connected to each node')
     parser.add_argument('--time', dest='time', action='store',
