@@ -32,7 +32,7 @@ class Table {
   map<unsigned, map<unsigned, unsigned> > id;
 
   Table();
-  Table(unsigned num);
+  Table(unsigned ind);
   Table(const Table &rhs);
   ostream & Print(ostream &os) const;
 
