@@ -28,10 +28,11 @@ Table::Table(unsigned ind)
 Table::Table(const Table &rhs) :
   index(rhs.index), next_hop(rhs.next_hop) {}
 
+
 ostream & Table::Print(ostream &os) const
 {
-  os << "\nnext hop\n";
-  map<unsigned, unsigned>::iterator it;
+  os << "next hop\n";
+  map<unsigned, unsigned>::const_iterator it;
   for (it = next_hop.begin(); it != next_hop.end(); it++) {
     os << it->first << ": " << it->second << endl;
   }
