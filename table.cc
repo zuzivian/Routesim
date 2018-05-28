@@ -72,7 +72,7 @@ ostream & Table::Print(ostream &os) const
       for (unsigned j = 0; j < this->size; j++)
       {
         // process neighbors only
-        if (j == this->index || std::isinf(link_cost[j])) continue;
+        if (j == this->index || std::isinf(this->link_cost[j])) continue;
         // take minimum of current value and new value
         double new_cost = this->link_cost[j] + this->matrix[j][i];
         if (new_cost < best[i]) {
@@ -81,7 +81,7 @@ ostream & Table::Print(ostream &os) const
           best_hop[i] = j;
         }
       }
-      cerr << best[i] << "vs"<< matrix[this->index][i] << endl;
+      cerr << best[i] << " vs "<< matrix[this->index][i] << endl;
       if (matrix[this->index][i] != best[i]) updated = true;
       matrix[this->index][i] = best[i];
       next_hop[i] = best_hop[i];
