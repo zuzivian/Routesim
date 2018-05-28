@@ -8,6 +8,10 @@ Node::Node(const unsigned n, SimulationContext *c, double b, double l) :
   #if defined(DISTANCEVECTOR)
   this->tbl = Table(n, 25);
   #endif
+
+  #if defined(LLINKSTATE)
+  this->tbl = Table(n);
+  #endif
 }
 
 Node::Node()
