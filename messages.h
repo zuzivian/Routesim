@@ -30,7 +30,7 @@ class RoutingMessage {
   std::vector<double> dist_vec;
   unsigned sender;
   RoutingMessage();
-  RoutingMessage(unsigned sender, std::vector<double> vec);
+  RoutingMessage(unsigned src, std::vector<double> vec);
   RoutingMessage(const RoutingMessage &rhs);
   RoutingMessage &operator=(const RoutingMessage &rhs);
 

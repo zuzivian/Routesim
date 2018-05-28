@@ -39,12 +39,15 @@ ostream &RoutingMessage::Print(ostream &os) const
 }
 
 RoutingMessage::RoutingMessage()
-{}
+{
+  cerr << "RoutingMessage: empy message\n";
+  throw GeneralException();
+}
 
-RoutingMessage::RoutingMessage(unsigned sender, std::vector<double> vec)
+RoutingMessage::RoutingMessage(unsigned src, std::vector<double> vec)
 {
   this->dist_vec = vec;
-  this->sender = sender;
+  this->sender = src;
 }
 
 RoutingMessage::RoutingMessage(const RoutingMessage &rhs) :
