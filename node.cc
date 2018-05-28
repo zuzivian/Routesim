@@ -198,11 +198,11 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 {
   unsigned src = m->sender;
   std::vector<double> new_vec = m->dist_vec;
-  cerr<<*this<<": Received message from "<<src<<":  "<<new_vec<<endl;
+  cerr << *this <<": Received message from "<<src<<":  "<<new_vec<<endl;
 
   if (src != this->GetNumber())
   {
-    cerr<<*this<<": Error invalid message. Wrong src."<<endl;
+    cerr << *this<<": Error invalid message. Wrong src."<<endl;
     return; // invalid message
   }
 
@@ -217,7 +217,7 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
   }
   else
   {
-    cerr<<*this<<": No updates to table."<<endl;
+    cerr << *this << ": No updates to table." << endl;
   }
 
 }
