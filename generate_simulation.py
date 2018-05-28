@@ -29,25 +29,19 @@ def generate_simulation(n, degree, time, filename):
             for j in range(int(math.floor(math.log(n,2)))):
                 offset = 1<<j
                 for neighbor in [i+offset, i-offset]:
-                    avail = True
-                    for (a, b, c) in links:
-                        if (b==i and a==neighbor):
-                            avail_degree -= 1
-                            avail = False
-                            break
-                    if avail and neighbor > 0 and neighbor < n:
-                        possible_neighbors.append(neighbor)
-
+                    if neighbor >= 0 and neighbor < n:
+                        already_exists = any([l[0] == i and l[1] == neighbor for l in links])
+                        if not already_exists:
+                            possible_neighbors.append(neighbor)
             # choose random links
-            for j in range(avail_degree):
+            for j in range(min(degree, len(possible_neighbors))):
                 neighbor = random.choice(possible_neighbors)
                 possible_neighbors.remove(neighbor)
-                link1 = (i, neighbor, random_weight())
-                link2 = (neighbor, i, random_weight())
-                links.append(link1)
-                links.append(link2)
-                file.write("0 ADD_LINK %d %d %d 1\n" % link1)
-                file.write("0 ADD_LINK %d %d %d 1\n" % link2)
+                link = (i, neighbor, random_weight())
+                reverse_link = (neighbor, i, link[2])
+                links.extend([link, reverse_link])
+                file.write("0 ADD_LINK %d %d %d 1\n" % link)
+                file.write("0 ADD_LINK %d %d %d 1\n" % reverse_link)
 
     print("writing %s.event" % filename)
     with open("%s.event" % filename, "w") as file:
