@@ -31,10 +31,10 @@ Table::Table(const Table &rhs) :
 ostream & Table::Print(ostream &os) const
 {
   os << "\nnext hop\n";
-  for (unsigned i = 0; i < next_hop.size() ; i++) {
-    os << this->next_hop[i] << " ";
+  map<string, int>::iterator it;
+  for (it = next_hop.begin(); it != next_hop.end(); it++) {
+    os << it->first << ": " << it->second << endl;
   }
-  os << "\n";
   return os;
 }
 
