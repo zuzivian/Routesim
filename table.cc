@@ -81,7 +81,7 @@ ostream & Table::Print(ostream &os) const
           best_hop[i] = j;
         }
       }
-      cerr << best[i] << endl;
+      cerr << best[i] << "vs"<< matrix[this->index][i] << endl;
       if (matrix[this->index][i] != best[i]) updated = true;
       matrix[this->index][i] = best[i];
       next_hop[i] = best_hop[i];
