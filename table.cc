@@ -23,7 +23,7 @@ Table::Table(unsigned ind)
 {
   this->index = ind;
   this->next_hop = map<unsigned, unsigned> ();
-  this->t = map<unsigned, map<unsigned, Link>> ();
+  this->t = map<unsigned, map<unsigned, Link> > ();
   this->id = map<unsigned, map<unsigned, unsigned> > ();
 }
 
