@@ -11,8 +11,6 @@ class Table;
 class Link;
 class SimulationContext;
 
-#include "table.h"
-
 using namespace std;
 
 class Node {

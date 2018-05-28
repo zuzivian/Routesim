@@ -8,6 +8,8 @@
 #include <cmath>
 #include <map>
 
+class Link;
+
 using namespace std;
 
 #if defined(GENERIC)
