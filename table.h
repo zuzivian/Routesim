@@ -28,7 +28,8 @@ class Table {
  public:
   unsigned index;
   map<unsigned, double > next_hop;
-  // need a structure here to capture network topology-> vector/map of Links?
+  map<unsigned, map<unsigned, Link> > t;
+  map<unsigned, map<unsigned, unsigned> > id;
 
   Table();
   Table(unsigned num);

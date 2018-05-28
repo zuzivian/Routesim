@@ -56,7 +56,7 @@ bool Table::UpdateMessageLink(unsigned id, unsigned sender, const Link l)
 
 unsigned Table::GetLinkID(unsigned src, unsigned dest)
 {
-  return 0;
+  return this->id[src][dest];
 }
 
 unsigned Table::GetNextHop(unsigned ind) const
@@ -65,19 +65,19 @@ unsigned Table::GetNextHop(unsigned ind) const
 }
 
 
-bool ComputeMatrix(Node v, array vl, double lat, Node first, Node prev)
-{
-  for(i== 0; i < v.GetNeighbors.size(); i++)
-  {
-    n = v.GetNeighbors[i];
-    lat = lat + n.GetLatency;
-    vl.append([n.GetNumber, lat);
-    if v != first.GetNumber and != prev.GetNumber
-      ComputeMatrix(n, vl, lat, first, v);
-    return vl;
-
-  }
-}
+// bool ComputeMatrix(Node v, array vl, double lat, Node first, Node prev)
+// {
+//   for(i== 0; i < v.GetNeighbors.size(); i++)
+//   {
+//     n = v.GetNeighbors[i];
+//     lat = lat + n.GetLatency;
+//     vl.append([n.GetNumber, lat);
+//     if v != first.GetNumber and != prev.GetNumber
+//       ComputeMatrix(n, vl, lat, first, v);
+//     return vl;
+//
+//   }
+// }
 
 #endif
 
