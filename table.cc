@@ -41,7 +41,7 @@ ostream & Table::Print(ostream &os) const
 
 bool Table::ComputeDijkstra()
 {
-  return true;
+  return false;
 }
 
 bool Table::UpdateLink(const Link l)
