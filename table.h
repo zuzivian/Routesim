@@ -49,10 +49,10 @@ class Table {
   ostream & Print(ostream &os) const;
 
   bool ComputeMatrix();
-  bool UpdateMatrix(unsigned index, vector<double> vec);
+  bool UpdateMatrix(unsigned ind, vector<double> vec);
   bool UpdateLink(unsigned n, double d);
-  unsigned GetNextHop(unsigned index) const;
-  std::vector<double> GetVector(int index) const;
+  unsigned GetNextHop(unsigned ind) const;
+  std::vector<double> GetVector(int ind) const;
 
 };
 #endif

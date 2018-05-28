@@ -170,7 +170,6 @@ void Node::LinkHasBeenUpdated(const Link *l)
   cerr << *this<<": Link Update: "<<*l<<endl;
   double newlat = l->GetLatency();
   unsigned dest = l->GetDest();
-  unsigned src = l->GetSrc();
 
   if (this->tbl.UpdateLink(dest, newlat))
   {
