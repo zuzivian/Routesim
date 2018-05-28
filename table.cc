@@ -20,7 +20,7 @@ Table::Table()
 }
 
 bool Table::ComputeMatrix(Node v, array vl, double lat, Node first, Node prev)
-  {
+{
   for(i== 0, i < v.GetNeighbors.size(), i++)
   {
     n = v.GetNeighbors[i];
