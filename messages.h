@@ -18,7 +18,7 @@ class RoutingMessage {
  public:
   unsigned id;
   unsigned sender;
-  const Link *link;
+  const Link link;
 
   RoutingMessage();
   RoutingMessage(unsigned id, unsigned src, const Link l);
