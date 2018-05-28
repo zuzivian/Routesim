@@ -62,12 +62,12 @@ ostream & Table::Print(ostream &os) const
   {
     //Implement DV
     double inf = std::numeric_limits<double>::infinity();
-    std::vector<double> best = std::vector<double> (this->size, inf);
-    std::vector<unsigned> best_hop = std::vector<unsigned> (this->size, this->index);
     bool updated = false;
     // loop through matrix vectors and update link cost
     for (unsigned i = 0; i < this->size; i++)
     {
+      double best = inf;
+      unsigned best_hop = this->index;
       if (i == this->index) continue; // don't process own row
       for (unsigned j = 0; j < this->size; j++)
       {
@@ -75,16 +75,16 @@ ostream & Table::Print(ostream &os) const
         if (j == this->index || std::isinf(this->link_cost[j])) continue;
         // take minimum of current value and new value
         double new_cost = this->link_cost[j] + this->matrix[j][i];
-        if (new_cost < best[i]) {
+        if (new_cost < best) {
           // update best_dist
-          best[i] = new_cost;
-          best_hop[i] = j;
+          best = new_cost;
+          best_hop = j;
         }
       }
-      cerr << best[i] << " vs "<< matrix[this->index][i] << endl;
-      if (this->matrix[this->index][i] != best[i]) updated = true;
-      this->matrix[this->index][i] = best[i];
-      this->next_hop[i] = best_hop[i];
+      cerr << best << " vs "<< matrix[this->index][i] << endl;
+      if (this->matrix[this->index][i] != best) updated = true;
+      this->matrix[this->index][i] = best;
+      this->next_hop[i] = best_hop;
     }
     return updated;
   }
