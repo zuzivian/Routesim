@@ -222,7 +222,7 @@ void Node::TimeOut()
 }
 
 
-Node *Node::GetNextHop(const Node *destination) const
+Node *Node::GetNextHop(const Node *destination)
 {
   // returns a Node*
   unsigned num = this->GetNumber();
@@ -235,7 +235,7 @@ Node *Node::GetNextHop(const Node *destination) const
       if (nexthop == neighbors[i]->GetNumber())
         return new Node(*neighbors[i]);
   }
-  throw GeneralException();
+  return NULL;
 }
 
 Table *Node::GetRoutingTable() const
