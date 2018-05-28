@@ -35,7 +35,7 @@ def generate_simulation(n, degree, time, filename):
                             avail_degree -= 1
                             avail = False
                             break
-                    if avail:
+                    if avail and neighbor > 0 and neighbor < n:
                         possible_neighbors.append(neighbor)
 
             # choose random links
