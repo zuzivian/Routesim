@@ -126,12 +126,46 @@ ostream & Node::Print(ostream &os) const
 void Node::LinkHasBeenUpdated(const Link *l)
 {
   cerr << *this<<": Link Update: "<<*l<<endl;
+
+  if (l->GetSrc() != this->GetNumber())
+  {
+    cerr << *this<<": Invalid Link!"<<endl;
+    return; // invalid link
+  }
+
+  if (this->tbl.UpdateLink(l))
+  {
+    cout << this->tbl.Print(cout);
+    std::vector<double> my_vec = this->tbl.GetVector();
+    const RoutingMessage* routing_message = new RoutingMessage(counter, number, my_vec);
+    // send messages to all neighbors
+    SendToNeighbors(routing_message);
+  }
+  else
+  {
+    cerr << *this <<": No update!"<<endl;
+  }
 }
 
 
 void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 {
-  cerr << *this << " Routing Message: "<<*m;
+  cerr << *this <<": Received message from "<<m->sender<<endl;
+  cerr << m->Print(cerr)<<endl;
+
+  if (this->tbl.UpdateMatrix(src, new_vec))
+  {
+    cout << this->tbl.Print(cout);
+    std::vector<double> my_vec = this->tbl.GetVector();
+    const RoutingMessage* routing_message = new RoutingMessage(number, my_vec);
+    // send messages to all neighbors
+    SendToNeighbors(routing_message);
+  }
+  else
+  {
+    cerr << *this << ": No updates to table." << endl;
+    cout << this->tbl.Print(cout);
+  }
 }
 
 void Node::TimeOut()
@@ -141,14 +175,23 @@ void Node::TimeOut()
 
 Node *Node::GetNextHop(const Node *destination) const
 {
-  // WRITE
-  return 0;
+  // returns a Node*
+  unsigned num = this->GetNumber();
+  unsigned nexthop = this->tbl.GetNextHop(destination->GetNumber());
+  if (nexthop == num) return NULL; // infinite loop
+  deque<Node*> neighbors = *GetNeighbors();
+
+  for (unsigned i = 0; i < neighbors.size() ; i++)
+  {
+      if (nexthop == neighbors[i]->GetNumber())
+        return new Node(*neighbors[i]);
+  }
+  return NULL;
 }
 
 Table *Node::GetRoutingTable() const
 {
-  // WRITE
-  return 0;
+  return new Table(this->tbl);
 }
 
 

@@ -15,8 +15,12 @@ class RoutingMessage {
 
 #if defined(LINKSTATE)
 class RoutingMessage {
+  unsigned id;
+  unsigned sender;
+  const Link *link;
 
   RoutingMessage();
+  RoutingMessage(unsigned id, unsigned src, const Link *l);
   RoutingMessage(const RoutingMessage &rhs);
   RoutingMessage &operator=(const RoutingMessage &rhs);
 

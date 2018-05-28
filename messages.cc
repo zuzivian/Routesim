@@ -14,15 +14,22 @@ ostream &RoutingMessage::Print(ostream &os) const
 
 ostream &RoutingMessage::Print(ostream &os) const
 {
+  os << "Message from node " << this->sender << ", id " << this->id << ":\n";
+  os << this->link;
+  os << "\n";
   return os;
 }
 
-RoutingMessage::RoutingMessage()
-{}
+RoutingMessage::RoutingMessage(unsigned id, unsigned src, const Link *l)
+{
+  this->id = id;
+  this->sender = src;
+  this->link = l;
+}
 
 
-RoutingMessage::RoutingMessage(const RoutingMessage &rhs)
-{}
+RoutingMessage::RoutingMessage(const RoutingMessage &rhs) :
+  id(rhs.id), sender(rhs.sender), link(rhs.link) {}
 
 #endif
 

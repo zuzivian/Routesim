@@ -23,6 +23,7 @@ class Node {
   double   lat;
 
 #if defined(LINKSTATE)
+  Table tbl;
 #endif
 
 #if defined(DISTANCEVECTOR)

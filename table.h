@@ -24,14 +24,18 @@ class Table {
   // Students should write this class
  public:
   map< int, double > dist;
+  // need a structure here to capture network topology-> vector/map of Links?
 
   Table();
   Table(unsigned num);
   Table(const Table &rhs);
   ostream & Print(ostream &os) const;
 
-  bool UpdateDistance();
-  unsigned GetNextHop(unsigned ind);
+  bool ComputeDijkstra();
+  bool UpdateLink(const Link *l);
+  bool GetLink(unsigned src, unsigned dest);
+  bool UpdateMessageLink(const Link *l, unsigned id);
+  unsigned GetNextHop(unsigned ind) const;
 
 };
 #endif
