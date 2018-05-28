@@ -176,10 +176,9 @@ void Node::LinkHasBeenUpdated(const Link *l)
   {
     cerr << *this<<": Invalid Link!"<<endl;
     return; // invalid link
-
   }
-  bool updated = this->tbl.UpdateLink(dest, newlat);
-  if (updated)
+
+  if (this->tbl.UpdateLink(dest, newlat))
   {
     //cout << this->tbl.Print(cout);
     std::vector<double> my_vec = this->tbl.GetVector(-1);
@@ -201,8 +200,7 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
   cerr << *this <<": Received message from "<<src<<endl;
   cerr << m->Print(cerr)<<endl;
 
-  bool updated = this->tbl.UpdateMatrix(src, new_vec);
-  if (updated)
+  if (this->tbl.UpdateMatrix(src, new_vec))
   {
     cout << this->tbl.Print(cout);
     std::vector<double> my_vec = this->tbl.GetVector(-1);
