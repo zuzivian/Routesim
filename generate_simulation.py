@@ -61,7 +61,7 @@ if __name__ == "__main__":
     parser.add_argument('--nodes', dest='n', action='store',
                         default=20, help='number of nodes in the graph')
     parser.add_argument('--degree', dest='degree', action='store',
-                        default=2, help='number of edges connected to each node')
+                        default=3, help='number of edges connected to each node')
     parser.add_argument('--time', dest='time', action='store',
                         default=1000, help='time, in seconds, to run the simulation')
     parser.add_argument('--out', dest='filename', action='store',
