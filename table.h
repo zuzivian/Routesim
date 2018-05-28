@@ -23,7 +23,16 @@ class Table {
 class Table {
   // Students should write this class
  public:
+  map< int, double > dist;
+
+  Table();
+  Table(unsigned number);
+  Table(const Table &rhs);
   ostream & Print(ostream &os) const;
+
+  bool UpdateDistance();
+  unsigned GetNextHop(unsigned ind);
+
 };
 #endif
 
