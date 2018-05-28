@@ -91,8 +91,14 @@ ostream & Table::Print(ostream &os) const
   // Takes a distance vector from neighbor and add to matrix, then update matrix.
   // returns true if matrix was updated
   bool Table::UpdateMatrix(unsigned index, std::vector<double> vec) {
-    if (index != this->index) return false;
-    if (vec.size() != this->size) return false;
+    if (index == this->index) {
+      cerr << *this<<": Cannot update own vector!"<<endl;
+      return false;
+    }
+    if (vec.size() != this->size) {
+      cerr << *this<<": Invalid vector length!"<<endl;
+      return false;
+    }
     this->matrix[index] = vec;
     return ComputeMatrix();
   }
@@ -101,7 +107,11 @@ ostream & Table::Print(ostream &os) const
   // returns true if matrix was updated
   bool Table::UpdateLink(unsigned index, double newcost)
   {
-    if (index != this->index) return false;
+    if (index == this->index)
+    {
+      cerr << *this<<": Cannot update own node cost!"<<endl;
+      return false;
+    }
     this->link_cost[index] = newcost;
     return ComputeMatrix();
   }
