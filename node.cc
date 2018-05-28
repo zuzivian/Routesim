@@ -172,8 +172,12 @@ void Node::LinkHasBeenUpdated(const Link *l)
   unsigned dest = l->GetDest();
   unsigned src = l->GetSrc();
 
-  if (src != this->GetNumber()) return; // invalid link
+  if (src != this->GetNumber())
+  {
+    cerr << *this<<": Invalid Link!"<<endl;
+    return; // invalid link
 
+  }
   bool updated = this->tbl.UpdateLink(dest, newlat);
   if (updated)
   {
