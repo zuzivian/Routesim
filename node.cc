@@ -216,7 +216,9 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
     SendToNeighbors(routing_message);
   }
   else
-
+  {
+    cerr<<*this<<": No updates to table."<<endl;
+  }
 
 }
 
