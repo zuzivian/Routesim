@@ -70,13 +70,15 @@ bool Table::ComputeDijkstra()
     // cout << smallest_node << endl;
     // cout << smallest << endl;
     Q.erase(std::remove(Q.begin(), Q.end(), smallest_node), Q.end());
-    // for (unsigned k = 0; k < t.size(); k++) {
-    //   double alt = dist[smallest_node] + t[smallest_node][k].GetLatency();
-    //   if (alt < dist[k]) {
-    //     dist[k] = alt;
-    //     next_hop[k] = smallest_node;
-    //   }
-    // }
+    map<unsigned, double>::iterator it;
+    for (it = dist.begin(); it != dist.end(); it++)
+    {
+      double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
+      if (alt < dist[it->first]) {
+        dist[it->first] = alt;
+        next_hop[it->first] = smallest_node;
+      }
+    }
   }
   return true;
 }
