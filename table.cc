@@ -66,10 +66,10 @@ bool Table::ComputeDijkstra()
         smallest_node = it->first;
       }
     }
-    // cout << dist.size() << endl;
-    // cout << "Q: "<< Q.size() << endl;
-    // cout << smallest_node << endl;
-    // cout << smallest << endl;
+    cout << dist.size() << endl;
+    cout << "Q: "<< Q.size() << endl;
+    cout << smallest_node << endl;
+    cout << smallest << endl;
     Q.erase(std::remove(Q.begin(), Q.end(), smallest_node));
     for (it = dist.begin(); it != dist.end(); it++)
     {
