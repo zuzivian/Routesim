@@ -43,29 +43,31 @@ ostream & Table::Print(ostream &os) const
 bool Table::ComputeDijkstra()
 {
   std::vector<unsigned> Q (t.size());
-  for (i = 0; i < t.size(); i++)
+  for (unsigned i = 0; i < t.size(); i++)
   {
-    dist[i] = inf;
-    next_hop[i] = undefined;
-    Q.pushback (i);
+    dist[i] = std::numeric_limits<double>::infinity();
+    next_hop[i] = null;
+    Q.push_back(i);
   }
-  dist[] = 0;
-  while Q
+  dist[index] = 0;
+  while (Q.size() != 0)
   {
-    unsigned smallest inf;
-    for j = 0; j < t.size(); j++;
+    double smallest = std::numeric_limits<double>::infinity();
+    unsigned smallest_node = index;
+    for (unsigned j = 0; j < t.size(); j++;)
     {
-      if t[i][j] < smallest
-        smallest->j;
-    }
-    Q.erase(smallest);
-    for (k = 0; k < t.size(); k++)
+      if (t[i][j].lat < smallest){
+        smallest = t[i][j].lat;
+        smallest_node = j;
+    }}
+    Q.erase(smallest_node);
+    for (unsigned k = 0; k < t.size(); k++)
     {
-        double alt = dist[smallest] + t[smallest][k];
-        if alt < dist[k]
+        double alt = dist[smallest_node] + t[smallest_node][k];
+        if (alt < dist[k]){
           dist[k] = alt;
-          next_hop[k] = smallest;
-    }
+          next_hop[k] = smallest_node;
+    }}
   return true;
   }
   
