@@ -42,22 +42,24 @@ ostream & Table::Print(ostream &os) const
 
 bool Table::ComputeDijkstra()
 {
-  std::vector<unsigned> Q (t.size());
-  for (unsigned i = 0; i < t.size(); i++)
+  std::vector<unsigned> Q(t.size());
+  map<unsigned, double>::iterator it;
+  for (it = dist.begin(); it != dist.end(); it++)
   {
-    dist[i] = std::numeric_limits<double>::infinity();
-    next_hop[i] = NULL;
-    Q.push_back(i);
+    dist[it->first] = std::numeric_limits<double>::infinity();
+    next_hop[it->first] = NULL;
+    Q.push_back(it->first);
   }
   dist[index] = 0;
   while (Q.size() != 0)
   {
     double smallest = std::numeric_limits<double>::infinity();
     unsigned smallest_node = index;
-    for (unsigned j = 0; j < t.size(); j++)
+    map<unsigned, double>::iterator it;
+    for (it = dist.begin(); it != dist.end(); it++)
     {
-      if (t[index][j].GetLatency() < smallest) {
-        smallest = t[index][j].GetLatency();
+      if (t[index].count(it->first]) == 1 && t[index][it->first].GetLatency() < smallest) {
+        smallest = t[index][it->first].GetLatency();
         smallest_node = j;
       }
     }
