@@ -70,7 +70,6 @@ bool Table::ComputeDijkstra()
     // cout << smallest_node << endl;
     // cout << smallest << endl;
     Q.erase(std::remove(Q.begin(), Q.end(), smallest_node), Q.end());
-    map<unsigned, double>::iterator it;
     for (it = dist.begin(); it != dist.end(); it++)
     {
       double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
