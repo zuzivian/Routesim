@@ -60,7 +60,7 @@ bool Table::ComputeDijkstra()
         smallest = t[i][j].GetLatency();
         smallest_node = j;
     }}
-    Q.erase(smallest_node);
+    Q.erase (smallest_node);
     for (unsigned k = 0; k < t.size(); k++)
     {
         double alt = dist[smallest_node] + t[smallest_node][k];
