@@ -46,7 +46,7 @@ bool Table::ComputeDijkstra()
   for (unsigned i = 0; i < t.size(); i++)
   {
     dist[i] = std::numeric_limits<double>::infinity();
-    next_hop[i] = null;
+    next_hop[i] = NULL;
     Q.push_back(i);
   }
   dist[index] = 0;
@@ -54,7 +54,7 @@ bool Table::ComputeDijkstra()
   {
     double smallest = std::numeric_limits<double>::infinity();
     unsigned smallest_node = index;
-    for (unsigned j = 0; j < t.size(); j++;)
+    for (unsigned j = 0; j < t.size(); j++)
     {
       if (t[i][j].lat < smallest){
         smallest = t[i][j].lat;
