@@ -28,6 +28,7 @@ class Table {
  public:
   unsigned index;
   map<unsigned, unsigned> next_hop;
+  map<unsigned, double> dist;
   map<unsigned, map<unsigned, Link> > t;
   map<unsigned, map<unsigned, unsigned> > id;
 
