@@ -56,8 +56,8 @@ bool Table::ComputeDijkstra()
     unsigned smallest_node = index;
     for (unsigned j = 0; j < t.size(); j++)
     {
-      if (t[i][j].lat < smallest){
-        smallest = t[i][j].lat;
+      if (t[i][j].GetLatency() < smallest){
+        smallest = t[i][j].GetLatency();
         smallest_node = j;
     }}
     Q.erase(smallest_node);
