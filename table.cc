@@ -74,6 +74,8 @@ bool Table::ComputeDijkstra()
     for (it = dist.begin(); it != dist.end(); it++)
     {
       double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
+      cout << alt << endl;
+      cout << dist[it->first] << endl;
       if (alt < dist[it->first]) {
         dist[it->first] = alt;
         next_hop[it->first] = smallest_node;
