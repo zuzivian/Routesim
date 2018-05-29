@@ -1,5 +1,6 @@
 #include "table.h"
 #include "error.h"
+#include <algorithm>
 
 #if defined(GENERIC)
 
