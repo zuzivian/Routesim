@@ -64,7 +64,7 @@ bool Table::ComputeDijkstra()
         smallest_node = it->first;
       }
     }
-    Q.erase(smallest_node);
+    Q.erase(myvector.begin()+smallest_node);
     // for (unsigned k = 0; k < t.size(); k++) {
     //   double alt = dist[smallest_node] + t[smallest_node][k].GetLatency();
     //   if (alt < dist[k]) {
