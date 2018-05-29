@@ -33,8 +33,9 @@ ostream & Table::Print(ostream &os) const
   os << "next hop:";
   map<unsigned, unsigned>::const_iterator it;
   for (it = next_hop.begin(); it != next_hop.end(); it++) {
-    os << it->first << ": " << it->second << endl;
+    os << it->first << ": " << it->second << "; ";
   }
+  os << "\n";
   return os;
 }
 
