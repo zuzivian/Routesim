@@ -43,19 +43,19 @@ ostream & Table::Print(ostream &os) const
 
 bool Table::ComputeDijkstra()
 {
-  std::vector<unsigned> Q(dist.size());
+  map<unsigned, unsigned> Q;
   map<unsigned, double>::iterator it;
   for (it = dist.begin(); it != dist.end(); it++)
   {
     dist[it->first] = std::numeric_limits<double>::infinity();
     next_hop[it->first] = index;
-    Q.push_back(it->first);
+    Q[it->first] = it->second;
   }
   dist[index] = 0;
   while (Q.size() != 0)
   {
     double smallest = std::numeric_limits<double>::infinity();
-    unsigned smallest_node = Q.front();
+    unsigned smallest_node = Q[index];
     map<unsigned, double>::iterator it;
     for (it = dist.begin(); it != dist.end(); it++)
     {
@@ -67,17 +67,11 @@ bool Table::ComputeDijkstra()
         cout << it->first <<endl;
       }
     }
-    cout << it->first <<endl;
-    Q.erase(std::remove(Q.begin(), Q.end(), smallest_node));
-    cout << it->first <<endl;
+    Q.erase(Q.find(smallest_node));
     for (it = dist.begin(); it != dist.end(); it++)
     {
-      cout << it->first <<endl;
       if (t.count(smallest_node) && t[smallest_node].count(it->first)) {
-        cout << it->first <<endl;
         double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
-        cout << alt << endl;
-        cout << dist[it->first] << endl;
         if (alt < dist[it->first]) {
           dist[it->first] = alt;
           next_hop[it->first] = smallest_node;
