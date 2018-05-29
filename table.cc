@@ -58,12 +58,13 @@ bool Table::ComputeDijkstra()
     map<unsigned, double>::iterator it;
     for (it = dist.begin(); it != dist.end(); it++)
     {
-      if (t[index].count(it->first) == 1 && t[index][it->first].GetLatency() < smallest)
+      if (dist[it->first] < smallest)
       {
-        smallest = t[index][it->first].GetLatency();
+        smallest = dist[it->first];
         smallest_node = it->first;
       }
     }
+    std::vector<int>::iterator position = std::find(Q.begin(), Q.end(), smallest_node);
     Q.erase(Q.begin()+smallest_node);
     // for (unsigned k = 0; k < t.size(); k++) {
     //   double alt = dist[smallest_node] + t[smallest_node][k].GetLatency();
