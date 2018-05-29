@@ -57,7 +57,7 @@ bool Table::UpdateLink(const Link l)
   }
   else
   {
-    cerr << "Link update: " << l << endl;
+    cerr << "Link update accepted: " << l << endl;
     t[src][dest] = l;
     id[src][dest]++;
   }

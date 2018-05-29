@@ -14,9 +14,8 @@ ostream &RoutingMessage::Print(ostream &os) const
 
 ostream &RoutingMessage::Print(ostream &os) const
 {
-  os << "Message from node " << this->sender << ", id " << this->id << "about link:\n";
-  os << this->link;
-  os << "\n";
+  os << "Message from node " << this->sender << ", id " << this->id;
+  os << ", about "<< this->link << endl;
   return os;
 }
 
