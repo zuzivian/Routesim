@@ -69,8 +69,9 @@ bool Table::ComputeDijkstra()
     Q.erase(std::remove(Q.begin(), Q.end(), smallest_node));
     for (it = dist.begin(); it != dist.end(); it++)
     {
-
+      cout << it->first <<endl;
       if (t.count(smallest_node) && t[smallest_node].count(it->first)) {
+        cout << it->first <<endl;
         double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
         cout << alt << endl;
         cout << dist[it->first] << endl;
