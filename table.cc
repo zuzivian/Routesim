@@ -35,7 +35,6 @@ ostream & Table::Print(ostream &os) const
   for (it = next_hop.begin(); it != next_hop.end(); it++) {
     os << it->first << ": " << it->second << "; ";
   }
-  os << "\n";
   return os;
 }
 

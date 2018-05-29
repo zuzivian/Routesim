@@ -139,7 +139,7 @@ void Node::LinkHasBeenUpdated(const Link *l)
 
   if (this->tbl.UpdateLink(*l))
   {
-    cout << this->tbl.Print(cout);
+    cerr << this->tbl.Print(cerr) << endl;
     // send messages to all neighbors
     cerr << *this << ": Table updated. Forwarding message to neighbors." << endl;
     unsigned id =  this->tbl.GetLinkID(l->GetSrc(), l->GetDest());
