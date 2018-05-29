@@ -50,27 +50,26 @@ bool Table::ComputeDijkstra()
     Q.push_back(i);
   }
   dist[index] = 0;
-  // while (Q.size() != 0)
-  // {
-  //   double smallest = std::numeric_limits<double>::infinity();
-  //   unsigned smallest_node = index;
-  //   for (unsigned j = 0; j < t.size(); j++)
-  //   {
-  //     if (t[index][j].GetLatency() < smallest) {
-  //       smallest = t[index][j].GetLatency();
-  //       smallest_node = j;
-  //     }
-  //   }
-  //   Q.erase (Q.begin() + smallest_node);
-  //   for (unsigned k = 0; k < t.size(); k++) {
-  //     double alt = dist[smallest_node] + t[smallest_node][k].GetLatency();
-  //     if (alt < dist[k]) {
-  //       dist[k] = alt;
-  //       next_hop[k] = smallest_node;
-  //     }
-  //   }
-  //
-  // }
+  while (Q.size() != 0)
+  {
+    double smallest = std::numeric_limits<double>::infinity();
+    unsigned smallest_node = index;
+    for (unsigned j = 0; j < t.size(); j++)
+    {
+      if (t[index][j].GetLatency() < smallest) {
+        smallest = t[index][j].GetLatency();
+        smallest_node = j;
+      }
+    }
+    // Q.erase (Q.begin() + smallest_node);
+    // for (unsigned k = 0; k < t.size(); k++) {
+    //   double alt = dist[smallest_node] + t[smallest_node][k].GetLatency();
+    //   if (alt < dist[k]) {
+    //     dist[k] = alt;
+    //     next_hop[k] = smallest_node;
+    //   }
+    // }
+  }
   return true;
 }
 
