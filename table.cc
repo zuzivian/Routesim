@@ -55,7 +55,7 @@ bool Table::ComputeDijkstra()
   while (Q.size() != 0)
   {
     double smallest = std::numeric_limits<double>::infinity();
-    unsigned smallest_node = index;
+    unsigned smallest_node = Q.front();
     map<unsigned, double>::iterator it;
     for (it = dist.begin(); it != dist.end(); it++)
     {
