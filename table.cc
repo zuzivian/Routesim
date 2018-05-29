@@ -39,10 +39,38 @@ ostream & Table::Print(ostream &os) const
 }
 
 
+
 bool Table::ComputeDijkstra()
 {
-  return false;
+  std::vector<unsigned> Q (t.size());
+  for (i = 0; i < t.size(); i++)
+  {
+    dist[i] = inf;
+    next_hop[i] = undefined;
+    Q.pushback (i);
+  }
+  dist[] = 0;
+  while Q
+  {
+    unsigned smallest inf;
+    for j = 0; j < t.size(); j++;
+    {
+      if t[i][j] < smallest
+        smallest->j;
+    }
+    Q.erase(smallest);
+    for (k = 0; k < t.size(); k++)
+    {
+        double alt = dist[smallest] + t[smallest][k];
+        if alt < dist[k]
+          dist[k] = alt;
+          next_hop[k] = smallest;
+    }
+  return true;
+  }
+  
 }
+
 
 bool Table::UpdateLink(const Link l)
 {
