@@ -160,7 +160,7 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 
   if (this->tbl.UpdateMessageLink(m->id, m->sender, m->link))
   {
-    cout << this->tbl.Print(cout);
+    cerr << this->tbl.Print(cerr);
     cerr << *this << ": Table updated. Forwarding message to neighbors." << endl;
     // send messages to all neighbors
     SendToNeighbors(m);
@@ -168,7 +168,7 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
   else
   {
     cerr << *this << ": No updates to table." << endl;
-    cout << this->tbl.Print(cout);
+    cerr << this->tbl.Print(cerr);
   }
 }
 
