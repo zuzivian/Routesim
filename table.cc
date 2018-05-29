@@ -42,7 +42,7 @@ ostream & Table::Print(ostream &os) const
 
 bool Table::ComputeDijkstra()
 {
-  std::vector<unsigned> Q(t.size());
+  std::vector<unsigned> Q(dist.size());
   map<unsigned, double>::iterator it;
   for (it = dist.begin(); it != dist.end(); it++)
   {
