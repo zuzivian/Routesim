@@ -129,7 +129,7 @@ ostream & Node::Print(ostream &os) const
 
 void Node::LinkHasBeenUpdated(const Link *l)
 {
-  cerr << *this<<": Link Update: "<<*l<<endl;
+  cout << *this<<": Link Update: "<<*l<<endl;
 
   if (l->GetSrc() != this->GetNumber())
   {
@@ -139,42 +139,42 @@ void Node::LinkHasBeenUpdated(const Link *l)
 
   if (this->tbl.UpdateLink(*l))
   {
-    cerr << this->tbl.Print(cerr) << endl;
+    cout << this->tbl.Print(cerr) << endl;
     // send messages to all neighbors
-    cerr << *this << ": Table updated. Forwarding message to neighbors." << endl;
+    cout << *this << ": Table updated. Forwarding message to neighbors." << endl;
     unsigned id =  this->tbl.GetLinkID(l->GetSrc(), l->GetDest());
     const RoutingMessage* m = new RoutingMessage(id, number, *l);
     SendToNeighbors(m);
   }
   else
   {
-    cerr << *this <<": No update!"<<endl;
+    cout << *this <<": No update!"<<endl;
   }
 }
 
 
 void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 {
-  cerr << *this <<": Received message from "<<m->sender<<endl;
-  cerr << m->Print(cerr)<<endl;
+  cout << *this <<": Received message from "<<m->sender<<endl;
+  cout << m->Print(cout)<<endl;
 
   if (this->tbl.UpdateMessageLink(m->id, m->sender, m->link))
   {
-    cerr << this->tbl.Print(cerr);
-    cerr << *this << ": Table updated. Forwarding message to neighbors." << endl;
+    cout << this->tbl.Print(cout);
+    cout << *this << ": Table updated. Forwarding message to neighbors." << endl;
     // send messages to all neighbors
     SendToNeighbors(m);
   }
   else
   {
-    cerr << *this << ": No updates to table." << endl;
-    cerr << this->tbl.Print(cerr);
+    cout << *this << ": No updates to table." << endl;
+    cout << this->tbl.Print(cout);
   }
 }
 
 void Node::TimeOut()
 {
-  cerr << *this << " got a timeout: ignored"<<endl;
+  cout << *this << " got a timeout: ignored"<<endl;
 }
 
 Node *Node::GetNextHop(const Node *destination)
