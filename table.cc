@@ -68,9 +68,9 @@ bool Table::ComputeDijkstra()
           dist[k] = alt;
           next_hop[k] = smallest_node;
     }}
-  return true;
-  }
   
+  }
+  return true;
 }
 
 
