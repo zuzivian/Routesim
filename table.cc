@@ -66,21 +66,18 @@ bool Table::ComputeDijkstra()
         smallest_node = it->first;
       }
     }
-    cout << dist.size() << endl;
-    cout << "Q: "<< Q.size() << endl;
-    cout << smallest_node << endl;
-    cout << smallest << endl;
     Q.erase(std::remove(Q.begin(), Q.end(), smallest_node));
     for (it = dist.begin(); it != dist.end(); it++)
     {
-      cout << dist[it->first] << endl;
-      double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
-      cout << alt << endl;
-      cout << dist[it->first] << endl;
-      if (alt < dist[it->first]) {
-        dist[it->first] = alt;
-        next_hop[it->first] = smallest_node;
-      }
+      if (t[smallest_node].count(it->first) == 1) {
+        double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
+        cout << alt << endl;
+        cout << dist[it->first] << endl;
+        if (alt < dist[it->first]) {
+          dist[it->first] = alt;
+          next_hop[it->first] = smallest_node;
+        }
+
     }
   }
   return true;
