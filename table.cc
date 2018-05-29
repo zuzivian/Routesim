@@ -58,9 +58,10 @@ bool Table::ComputeDijkstra()
     map<unsigned, double>::iterator it;
     for (it = dist.begin(); it != dist.end(); it++)
     {
-      if (t[index].count(it->first]) == 1 && t[index][it->first].GetLatency() < smallest) {
+      if (t[index].count(it->first) == 1 && t[index][it->first].GetLatency() < smallest)
+      {
         smallest = t[index][it->first].GetLatency();
-        smallest_node = j;
+        smallest_node = it->first;
       }
     }
     Q.erase(smallest_node);
