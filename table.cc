@@ -64,9 +64,12 @@ bool Table::ComputeDijkstra()
         cout << "updated!" << endl;
         smallest = it->second;
         smallest_node = it->first;
+        cout << it->first <<endl;
       }
     }
+    cout << it->first <<endl;
     Q.erase(std::remove(Q.begin(), Q.end(), smallest_node));
+    cout << it->first <<endl;
     for (it = dist.begin(); it != dist.end(); it++)
     {
       cout << it->first <<endl;
