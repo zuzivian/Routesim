@@ -65,8 +65,11 @@ bool Table::ComputeDijkstra()
         smallest_node = it->first;
       }
     }
-    std::vector<unsigned>::iterator position = std::find(Q.begin(), Q.end(), smallest_node);
-    Q.erase(position);
+    cout << dist.size() << endl;
+    cout < Q.size() << endl;
+    cout << smallest_node << endl;
+    cout << smallest << endl;
+    Q.erase(std::remove(Q.begin(), Q.end(), smallest_node), Q.end());
     // for (unsigned k = 0; k < t.size(); k++) {
     //   double alt = dist[smallest_node] + t[smallest_node][k].GetLatency();
     //   if (alt < dist[k]) {
