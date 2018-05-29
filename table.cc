@@ -48,7 +48,7 @@ bool Table::ComputeDijkstra()
   for (it = dist.begin(); it != dist.end(); it++)
   {
     dist[it->first] = std::numeric_limits<double>::infinity();
-    next_hop[it->first] = NULL;
+    next_hop[it->first] = index;
     Q.push_back(it->first);
   }
   dist[index] = 0;
@@ -59,9 +59,9 @@ bool Table::ComputeDijkstra()
     map<unsigned, double>::iterator it;
     for (it = dist.begin(); it != dist.end(); it++)
     {
-      if (dist[it->first] < smallest)
+      if (it->second < smallest)
       {
-        smallest = dist[it->first];
+        smallest = it->second;
         smallest_node = it->first;
       }
     }
