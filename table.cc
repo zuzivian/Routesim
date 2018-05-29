@@ -46,12 +46,46 @@ bool Table::ComputeDijkstra()
 
 bool Table::UpdateLink(const Link l)
 {
-  return this->ComputeDijkstra();
+  // check if node is new
+  unsigned src = l->GetSrc();
+  unsigned dest = l->GetDest();
+  if (t.count(dest) == 0) t[dest]; // check if link is new
+  if (t[src].count(dest) == 0) {
+    cerr << "New link: " << l << endl;
+    t[src][dest] = l;
+    id[src][dest] = 2;
+  }
+  else
+  {
+    cerr << "Link update: " << l << endl;
+    t[src][dest] = l;
+    id[src][dest]++;
+  }
+  // get new set of next_hop's
+  ComputeDijkstra();
+  return true;
 }
 
 bool Table::UpdateMessageLink(unsigned id, unsigned sender, const Link l)
 {
-  return this->ComputeDijkstra();
+  unsigned src = l->GetSrc();
+  unsigned dest = l->GetDest();
+  if (t.count(src) == 0) t[src]; // check if src is new
+  if (t.count(dest) == 0) t[dest]; // check if dest is new
+  // update only if is new link, or t.id != id AND
+  if (t[src].count(dest) == 0] || id + 1 == this->id[src][dest])
+  {
+    cerr << "Link update: " << *l << endl;
+    this->t[src][dest] = l;
+    this->id[src][dest] = id;
+    ComputeDijkstra();
+    return true;
+  }
+  else
+  {
+    cerr << "Link update discarded: " << *l << endl;
+    return false;
+  }
 }
 
 unsigned Table::GetLinkID(unsigned src, unsigned dest)
