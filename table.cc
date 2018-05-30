@@ -31,11 +31,13 @@ Table::Table(const Table &rhs) :
 
 ostream & Table::Print(ostream &os) const
 {
-  os << "next hop:";
-  map<unsigned, unsigned>::const_iterator it;
-  for (it = next_hop.begin(); it != next_hop.end(); it++) {
-    os << it->first << ": " << it->second << "; ";
-  }
+  os << "dist: " << endl;
+  for(map<unsigned, double>::const_iterator it=dist.begin(); it!=dist.end(); ++it)
+    os << it->first << ":" << it->second << ";  ";
+  os << "\nnext_hop: " << endl;
+  for(map<unsigned, unsigned>::const_iterator it=next_hop.begin(); it!=next_hop.end(); ++it)
+    os << it->first << ":" << it->second << ";  ";
+  os << "\n";
   return os;
 }
 
@@ -81,13 +83,7 @@ bool Table::ComputeDijkstra()
       }
     }
   }
-  cout << "dist: " << endl;
-  for(map<unsigned, double>::const_iterator it=dist.begin(); it!=dist.end(); ++it)
-    std::cout << it->first << ":" << it->second << ";  ";
-  cout << "\nnext_hop: " << endl;
-  for(map<unsigned, unsigned>::const_iterator it=next_hop.begin(); it!=next_hop.end(); ++it)
-    std::cout << it->first << ":" << it->second << ";  ";
-  cout << "\n";
+  cout << this->Print(cout);
   return true;
 }
 
