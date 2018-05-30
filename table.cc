@@ -64,7 +64,6 @@ bool Table::ComputeDijkstra()
       {
         smallest = dist[it->first];
         smallest_node = it->first;
-        cout << it->first <<endl;
       }
     }
     Q.erase(Q.find(smallest_node));
