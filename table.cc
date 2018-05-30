@@ -31,10 +31,10 @@ Table::Table(const Table &rhs) :
 
 ostream & Table::Print(ostream &os) const
 {
-  os << "dist: " << endl;
+  os << "dist: ";
   for(map<unsigned, double>::const_iterator it=dist.begin(); it!=dist.end(); ++it)
     os << it->first << ":" << it->second << ";  ";
-  os << "pred: " << endl;
+  os << endl << "pred: ";
   for(map<unsigned, unsigned>::const_iterator it=pred.begin(); it!=pred.end(); ++it)
     os << it->first << ":" << it->second << ";  ";
   os << "\n";
