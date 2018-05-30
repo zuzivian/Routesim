@@ -43,9 +43,11 @@ ostream & Table::Print(ostream &os) const
 
 bool Table::ComputeDijkstra()
 {
+  // Q holds queue of vertices
   map<unsigned, unsigned> Q;
-  map<unsigned, double>::iterator it;
-  for (it = dist.begin(); it != dist.end(); it++)
+  map<unsigned, map<unsigned, Link> >::iterator it;
+
+  for (it = t.begin(); it != t.end(); it++)
   {
     dist[it->first] = std::numeric_limits<double>::infinity();
     next_hop[it->first] = index;
@@ -56,8 +58,7 @@ bool Table::ComputeDijkstra()
   {
     double smallest = std::numeric_limits<double>::infinity();
     unsigned smallest_node = Q[index];
-    map<unsigned, double>::iterator it;
-    for (it = dist.begin(); it != dist.end(); it++)
+    for (it = t.begin(); it != t.end(); it++)
     {
       if (it->second < smallest)
       {
@@ -67,8 +68,10 @@ bool Table::ComputeDijkstra()
       }
     }
     Q.erase(Q.find(smallest_node));
-    for (it = dist.begin(); it != dist.end(); it++)
+    // iterate through all nodes
+    for (it = t.begin(); it != t.end(); it++)
     {
+      // if node is a neighbor, check distance
       if (t.count(smallest_node) && t[smallest_node].count(it->first)) {
         double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
         if (alt < dist[it->first]) {
