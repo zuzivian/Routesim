@@ -72,6 +72,7 @@ bool Table::ComputeDijkstra()
       if (t.count(smallest_node) && t[smallest_node].count(it->first)) {
         double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
         if (alt < dist[it->first]) {
+          cout << "updating node" << it->first << "'s next hop to " << smallest_node << endl;
           dist[it->first] = alt;
           next_hop[it->first] = smallest_node;
         }

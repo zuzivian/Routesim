@@ -131,16 +131,12 @@ void Node::LinkHasBeenUpdated(const Link *l)
 {
   cout << *this<<": Link Update: "<<*l<<endl;
 
-  if (l->GetSrc() != this->GetNumber())
-  {
-    cerr << *this<<": Invalid Link!"<<endl;
-    return; // invalid link
-  }
+  if (l->GetSrc() != this->GetNumber()) return; // invalid link
 
   if (this->tbl.UpdateLink(*l))
   {
-    cout << this->tbl.Print(cerr) << endl;
     // send messages to all neighbors
+    cout << this->tbl.Print(cerr) << endl;
     cout << *this << ": Table updated. Forwarding message to neighbors." << endl;
     unsigned id =  this->tbl.GetLinkID(l->GetSrc(), l->GetDest());
     const RoutingMessage* m = new RoutingMessage(id, number, *l);
