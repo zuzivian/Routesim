@@ -20,13 +20,13 @@ Table::Table()
 Table::Table(unsigned ind)
 {
   this->index = ind;
-  this->next_hop = map<unsigned, unsigned> ();
+  this->pred = map<unsigned, unsigned> ();
   this->t = map<unsigned, map<unsigned, Link> > ();
   this->id = map<unsigned, map<unsigned, unsigned> > ();
 }
 
 Table::Table(const Table &rhs) :
-  index(rhs.index), next_hop(rhs.next_hop) {}
+  index(rhs.index), pred(rhs.pred) {}
 
 
 ostream & Table::Print(ostream &os) const
@@ -34,8 +34,8 @@ ostream & Table::Print(ostream &os) const
   os << "dist: " << endl;
   for(map<unsigned, double>::const_iterator it=dist.begin(); it!=dist.end(); ++it)
     os << it->first << ":" << it->second << ";  ";
-  os << "\nnext_hop: " << endl;
-  for(map<unsigned, unsigned>::const_iterator it=next_hop.begin(); it!=next_hop.end(); ++it)
+  os << "\pred: " << endl;
+  for(map<unsigned, unsigned>::const_iterator it=pred.begin(); it!=pred.end(); ++it)
     os << it->first << ":" << it->second << ";  ";
   os << "\n";
   return os;
@@ -52,7 +52,7 @@ bool Table::ComputeDijkstra()
   for (it = t.begin(); it != t.end(); it++)
   {
     dist[it->first] = std::numeric_limits<double>::infinity();
-    next_hop[it->first] = index;
+    pred[it->first] = index;
     Q[it->first] = it->second;
   }
   dist[index] = 0;
@@ -76,9 +76,8 @@ bool Table::ComputeDijkstra()
       if (t.count(smallest_node) && t[smallest_node].count(it->first)) {
         double alt = dist[smallest_node] + t[smallest_node][it->first].GetLatency();
         if (alt < dist[it->first]) {
-          cout << "updating node" << it->first << "'s next hop to " << smallest_node << endl;
           dist[it->first] = alt;
-          next_hop[it->first] = smallest_node;
+          pred[it->first] = smallest_node;
         }
       }
     }
@@ -105,7 +104,7 @@ bool Table::UpdateLink(const Link l)
     t[src][dest] = l;
     id[src][dest]++;
   }
-  // get new set of next_hop's
+  // get new table
   ComputeDijkstra();
   return true;
 }
@@ -139,7 +138,10 @@ unsigned Table::GetLinkID(unsigned src, unsigned dest)
 
 unsigned Table::GetNextHop(unsigned ind)
 {
-  return this->next_hop[ind];
+  unsigned next_hop = ind;
+  while (unsigned i = ind; i != index; i = pred[i])
+    next_hop = i;
+  return next_hop;
 }
 
 

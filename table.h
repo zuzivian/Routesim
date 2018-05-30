@@ -27,7 +27,7 @@ class Table {
   // Students should write this class
  public:
   unsigned index;
-  map<unsigned, unsigned> next_hop;
+  map<unsigned, unsigned> pred;
   map<unsigned, double> dist;
   map<unsigned, map<unsigned, Link> > t;
   map<unsigned, map<unsigned, unsigned> > id;
