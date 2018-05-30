@@ -44,7 +44,7 @@ ostream & Table::Print(ostream &os) const
 bool Table::ComputeDijkstra()
 {
   // Q holds queue of vertices
-  map<unsigned, map<unsigned, Link>> Q;
+  map<unsigned, map<unsigned, Link> > Q;
   map<unsigned, map<unsigned, Link> >::iterator it;
 
   for (it = t.begin(); it != t.end(); it++)
