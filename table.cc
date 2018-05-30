@@ -61,7 +61,6 @@ bool Table::ComputeDijkstra()
     {
       if (it->second < smallest)
       {
-        cout << "updated!" << endl;
         smallest = it->second;
         smallest_node = it->first;
         cout << it->first <<endl;
@@ -79,6 +78,8 @@ bool Table::ComputeDijkstra()
       }
     }
   }
+  cout << "dist: " << dist << endl;
+  cout << "next_hop: " << next_hop << endl;
   return true;
 }
 
