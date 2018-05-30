@@ -112,18 +112,18 @@ bool Table::UpdateLink(const Link l)
   return true;
 }
 
-bool Table::UpdateMessageLink(unsigned id, unsigned sender, const Link l)
+bool Table::UpdateMessageLink(unsigned nid, unsigned sender, const Link l)
 {
   unsigned src = l.GetSrc();
   unsigned dest = l.GetDest();
   if (t.count(src) == 0) t[src]; // check if src is new
   if (t.count(dest) == 0) t[dest]; // check if dest is new
   // update only if is new link, or t.id != id AND
-  if (t[src].count(dest) == 0 || id + 1 == this->id[src][dest])
+  if (t[src].count(dest) == 0 || nid > this->id[src][dest])
   {
     cerr << "Link update: " << l << endl;
     this->t[src][dest] = l;
-    this->id[src][dest] = id;
+    this->id[src][dest] = nid;
     ComputeDijkstra();
     return true;
   }

@@ -39,7 +39,7 @@ class Table {
 
   bool ComputeDijkstra();
   bool UpdateLink(const Link l);
-  bool UpdateMessageLink(unsigned id, unsigned sender, const Link l);
+  bool UpdateMessageLink(unsigned nid, unsigned sender, const Link l);
 
   unsigned GetLinkID(unsigned src, unsigned dest);
   unsigned GetNextHop(unsigned ind);
