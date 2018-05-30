@@ -34,7 +34,7 @@ ostream & Table::Print(ostream &os) const
   os << "dist: " << endl;
   for(map<unsigned, double>::const_iterator it=dist.begin(); it!=dist.end(); ++it)
     os << it->first << ":" << it->second << ";  ";
-  os << "\pred: " << endl;
+  os << "pred: " << endl;
   for(map<unsigned, unsigned>::const_iterator it=pred.begin(); it!=pred.end(); ++it)
     os << it->first << ":" << it->second << ";  ";
   os << "\n";
@@ -139,7 +139,7 @@ unsigned Table::GetLinkID(unsigned src, unsigned dest)
 unsigned Table::GetNextHop(unsigned ind)
 {
   unsigned next_hop = ind;
-  while (unsigned i = ind; i != index; i = pred[i])
+  for (unsigned i = ind; i != index; i = pred[i])
     next_hop = i;
   return next_hop;
 }
