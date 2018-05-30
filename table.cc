@@ -83,7 +83,7 @@ bool Table::ComputeDijkstra()
       }
     }
   }
-  cout << this->Print(cout);
+  this->Print(cout);
   return true;
 }
 
