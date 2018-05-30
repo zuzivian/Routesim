@@ -44,7 +44,7 @@ ostream & Table::Print(ostream &os) const
 bool Table::ComputeDijkstra()
 {
   // Q holds queue of vertices
-  map<unsigned, unsigned> Q;
+  map<unsigned, map<unsigned, Link>> Q;
   map<unsigned, map<unsigned, Link> >::iterator it;
 
   for (it = t.begin(); it != t.end(); it++)
@@ -60,9 +60,9 @@ bool Table::ComputeDijkstra()
     unsigned smallest_node = Q[index];
     for (it = t.begin(); it != t.end(); it++)
     {
-      if (it->second < smallest)
+      if (dist[it->first] < smallest)
       {
-        smallest = it->second;
+        smallest = dist[it->first];
         smallest_node = it->first;
         cout << it->first <<endl;
       }
