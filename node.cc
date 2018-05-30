@@ -161,11 +161,6 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
     // send messages to all neighbors
     SendToNeighbors(m);
   }
-  else
-  {
-    cout << *this << ": No updates to table." << endl;
-    cout << this->tbl.Print(cout);
-  }
 }
 
 void Node::TimeOut()
