@@ -129,29 +129,27 @@ ostream & Node::Print(ostream &os) const
 
 void Node::LinkHasBeenUpdated(const Link *l)
 {
-  cout << *this<<": Link Update: "<<*l<<endl;
-
   if (l->GetSrc() != this->GetNumber()) return; // invalid link
 
   if (this->tbl.UpdateLink(*l))
   {
     // send messages to all neighbors
-    cout << this->tbl.Print(cerr) << endl;
-    cout << *this << ": Table updated. Forwarding message to neighbors." << endl;
+    this->tbl.Print(cout);
+    cout << *this << ": Link update: " << *l <<"Forwarding message to neighbors." << endl;
     unsigned id =  this->tbl.GetLinkID(l->GetSrc(), l->GetDest());
     const RoutingMessage* m = new RoutingMessage(id, number, *l);
     SendToNeighbors(m);
   }
   else
   {
-    cout << *this <<": No update!"<<endl;
+    cout << *this <<": No link update!"<<endl;
   }
 }
 
 
 void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 {
-  cout << *this <<": Received message from "<<m->sender<<endl;
+  cout << *this <<": Received message." <<endl;
   m->Print(cout);
 
   if (this->tbl.UpdateMessageLink(m->id, m->sender, m->link))

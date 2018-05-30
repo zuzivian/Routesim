@@ -82,7 +82,6 @@ bool Table::ComputeDijkstra()
       }
     }
   }
-  this->Print(cout);
   return true;
 }
 
@@ -213,7 +212,6 @@ unsigned Table::GetNextHop(unsigned ind)
           best_hop = j;
         }
       }
-      cerr << best << " vs "<< matrix[this->index][i] << endl;
       if (this->matrix[this->index][i] != best) updated = true;
       this->matrix[this->index][i] = best;
       this->next_hop[i] = best_hop;
