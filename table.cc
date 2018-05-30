@@ -121,7 +121,7 @@ bool Table::UpdateMessageLink(unsigned nid, unsigned sender, const Link l)
   // update only if is new link, or t.id != id AND
   if (t[src].count(dest) == 0 || nid > this->id[src][dest])
   {
-    cerr << "Link update: " << l << " nid: " << nid << " vs current id: " << this->id[src][dest] << endl;
+    cerr << "Link update accepted!: " << l << " nid: " << nid << " vs current id: " << this->id[src][dest] << endl;
     this->t[src][dest] = l;
     this->id[src][dest] = nid;
     ComputeDijkstra();
