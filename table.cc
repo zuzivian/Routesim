@@ -129,7 +129,7 @@ bool Table::UpdateMessageLink(unsigned nid, unsigned sender, const Link l)
   }
   else
   {
-    cerr << "Link update discarded: " << l << " with id: " << nid << " vs stored " << this->id << endl;
+    cerr << "Link update discarded: " << l << " nid: " << nid << " vs current id: " << this->id[src][dest] << endl;
     return false;
   }
 }
