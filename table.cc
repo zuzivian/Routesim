@@ -58,7 +58,7 @@ bool Table::ComputeDijkstra()
   {
     double smallest = std::numeric_limits<double>::infinity();
     unsigned smallest_node = Q.begin()->first;
-    for (it = t.begin(); it != t.end(); it++)
+    for (it = Q.begin(); it != Q.end(); it++)
     {
       if (dist[it->first] < smallest)
       {
