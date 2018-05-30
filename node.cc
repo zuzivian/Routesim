@@ -133,16 +133,12 @@ void Node::LinkHasBeenUpdated(const Link *l)
 
   if (this->tbl.UpdateLink(*l))
   {
-    // send messages to all neighbors
+    cout << *this << ": Link updated: " << *l <<"Forwarding message to neighbors." << endl;
     this->tbl.Print(cout);
-    cout << *this << ": Link update: " << *l <<"Forwarding message to neighbors." << endl;
+    // send messages to all neighbors
     unsigned id =  this->tbl.GetLinkID(l->GetSrc(), l->GetDest());
     const RoutingMessage* m = new RoutingMessage(id, number, *l);
     SendToNeighbors(m);
-  }
-  else
-  {
-    cout << *this <<": No link update!"<<endl;
   }
 }
 
@@ -154,8 +150,8 @@ void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 
   if (this->tbl.UpdateMessageLink(m->id, m->sender, m->link))
   {
-    this->tbl.Print(cout);
     cout << *this << ": Table updated. Forwarding message to neighbors." << endl;
+    this->tbl.Print(cout);
     // send messages to all neighbors
     SendToNeighbors(m);
   }
