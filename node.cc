@@ -152,11 +152,11 @@ void Node::LinkHasBeenUpdated(const Link *l)
 void Node::ProcessIncomingRoutingMessage(const RoutingMessage *m)
 {
   cout << *this <<": Received message from "<<m->sender<<endl;
-  cout << m->Print(cout)<<endl;
+  m->Print(cout);
 
   if (this->tbl.UpdateMessageLink(m->id, m->sender, m->link))
   {
-    cout << this->tbl.Print(cout);
+    this->tbl.Print(cout);
     cout << *this << ": Table updated. Forwarding message to neighbors." << endl;
     // send messages to all neighbors
     SendToNeighbors(m);
