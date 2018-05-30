@@ -82,7 +82,7 @@ bool Table::ComputeDijkstra()
   cout << "dist: " << endl;
   for(map<unsigned, double>::const_iterator it=dist.begin(); it!=dist.end(); ++it)
     std::cout << it->first << ": " << it->second << ";  ";
-  cout << "\nnext_hop: " << next_hop << endl;
+  cout << "\nnext_hop: " << endl;
   for(map<unsigned, unsigned>::const_iterator it=next_hop.begin(); it!=next_hop.end(); ++it)
     std::cout << it->first << ":" << it->second << ";  ";
   cout << "\n";
